@@ -1,0 +1,14 @@
+<% if @location.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @location.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("#locations_table tbody tr[data-id='<%= @location.id %>']").replaceWith("<%= escape_javascript(render 'location_row_config', location: @location) %>")
+
+window.locations = window.locations.filter(function(location){
+    return location.id !== "<%= @location.id %>"
+})
+window.locations.push(<%= raw(@location.to_json) %>)
+
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

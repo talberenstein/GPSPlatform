@@ -1,0 +1,36 @@
+<div class="current-menu-config" id="config-menu-couples-types" hidden>
+
+  <blockquote>Tipos de acoplados</blockquote>
+
+  <table class="bordered" id="couples_type_table">
+    <thead>
+    <tr>
+      <th class="">Tipo</th>
+      <th class="">Alto (Cm)</th>
+      <th class="">Ancho (Cm)</th>
+      <th class="">Largo (Cm)</th>
+      <th class="">Peso (Kg)</th>
+      <th></th>
+      <th>
+        <button data-target="new_couples_types_modal" class="tooltipped" data-tooltip="Agregar Acoplado">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @couples_types.size == 0 %>
+        <tr id="couples_type_no_data">
+          <td colspan="7">No existen acoplados</td>
+        </tr>
+    <% end %>
+    <% @couples_types.each do |couples_type| %>
+        <%= render 'couples_types/couples_type_row_config', couples_type: couples_type %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= render 'couples_types/form_new' %>
+<%= render 'couples_types/form_edit' %>

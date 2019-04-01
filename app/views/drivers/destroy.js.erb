@@ -1,0 +1,7 @@
+$("#drivers_table tbody tr[data-id='<%= @driver.id %>']").remove()
+$("#new_device_driver_id option[value='<%= @driver.id %>']").remove()
+$("#edit_device_driver_id option[value='<%= @driver.id %>']").remove()
+
+window.drivers = window.drivers.filter(function(driver){
+    return driver.id !== "<%= @driver.id %>" 
+})

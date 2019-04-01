@@ -1,0 +1,50 @@
+<div id="new_geo_zone_modal" class="modal">
+  <form id="new_geo_zone_form">
+    <h4>Nueva Geo Zona</h4>
+    <div class="modal-content">
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="new_geo_zone_name" name="geo_zone[name]" required />
+          <label class="" for="new_geo_zone_name">Nombre</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="hidden" name="geo_zone[enter_alert]" value="0">
+          <input type="checkbox" id="new_geo_zone_enter_alert" class="" name="geo_zone[enter_alert]">
+          <label for="new_geo_zone_enter_alert">
+            Genera Alerta Entrada ?
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="hidden" name="geo_zone[exit_alert]" value="0">
+          <input type="checkbox" id="new_geo_zone_exit_alert" class="" name="geo_zone[exit_alert]">
+          <label class="" for="new_geo_zone_exit_alert">
+            Genera Alerta Salida ?
+          </label>
+        </div>
+      </div>
+      <% if current_user.global_admin? %>
+      <div class="row">
+        <label>Compañía</label>
+        <div class="input-field col s12">
+          <select name="geo_zone[company_id]" id="new_geo_zone_company_id" class="selectize" required>
+            <% Company.all.each do |c| %>
+            <option value="<%= c.id %>"><%= c.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action waves-effect waves-green btn-flat">Guardar</button>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">
+        Cerrar
+      </a>
+    </div>
+  </form>
+
+</div>

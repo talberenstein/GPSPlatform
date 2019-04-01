@@ -1,0 +1,33 @@
+<div class="current-menu-config" id="config-menu-devices" hidden>
+
+  <blockquote>Unidades</blockquote>
+
+  <table class="bordered" id="devices_table">
+    <thead>
+    <tr>
+      <th class="">Nombre</th>
+      <th class="">Imei</th>
+      <th class="">Telefono</th>
+      <th class="">Conductor</th>
+      <th class="">Compañía</th>
+      <th class="">Grupo</th>
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <% if current_user.global_admin? %>
+            <button class="tooltipped" data-tooltip="Agregar Unidad" data-target="new_device_modal">
+              <%= image_tag 'new.svg', width: 30 %>
+            </button>
+        <% end %>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'devices/device_row_config', collection: @devices, as: :device, cached: true %>
+    </tbody>
+  </table>
+
+</div>
+
+<%= render 'devices/form_new' %>
+<%= render 'devices/form_edit' %>

@@ -1,0 +1,8 @@
+$("#owner_table tbody tr[data-id='<%= @owner.id %>']").remove()
+
+console.log("asdfasdfasdfadsfs");
+
+
+window.owner = window.owner.filter(function(owner){
+    return owner.id !== "<%= @owner.id %>"
+})

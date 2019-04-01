@@ -1,0 +1,15 @@
+<% if @event.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @event.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("#events_table tbody tr[data-id='<%= @event.id %>']").replaceWith("<%= escape_javascript(render 'event_row_config', event: @event) %>")
+$("#new_device_event_event_id option[value='<%= @event.id %>']").replaceWith("<%= escape_javascript(render 'event_row_option', event: @event) %>")
+$("#edit_device_event_event_id option[value='<%= @event.id %>']").replaceWith("<%= escape_javascript(render 'event_row_option', event: @event) %>")
+
+window.events = window.events.filter(function(event){
+    return event.id !== "<%= @event.id %>" 
+})
+window.events.push(<%= raw(@event.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

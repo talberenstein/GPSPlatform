@@ -1,0 +1,16 @@
+<% if @driver.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @driver.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("#drivers_table tbody tr[data-id='<%= @driver.id %>']").replaceWith("<%= escape_javascript(render 'driver_row_config', driver: @driver) %>")
+$("#new_device_driver_id option[value='<%= @driver.id %>']").replaceWith("<%= escape_javascript(render 'driver_row_option', driver: @driver) %>")
+$("#edit_device_driver_id option[value='<%= @driver.id %>']").replaceWith("<%= escape_javascript(render 'driver_row_option', driver: @driver) %>")
+
+window.drivers = window.drivers.filter(function(driver){
+    return driver.id !== "<%= @driver.id %>" 
+})
+window.drivers.push(<%= raw(@driver.to_json) %>)
+
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

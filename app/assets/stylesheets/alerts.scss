@@ -1,0 +1,22 @@
+#map_alerts { height: 500px; }
+#device_info_alerts {
+    border-top: 5px solid #68cee1;
+    background-color: white;
+    width: 100%;
+    bottom: 0px;
+    z-index: 400;
+    right: 0px;
+    padding: 10px;
+    ul{
+        margin: 10px;
+        li{
+            list-style-type: square;
+        }
+    }
+    *{
+        font-size: 12px;
+    }
+}
+#alerts_table{
+    font-size: 10px;
+}

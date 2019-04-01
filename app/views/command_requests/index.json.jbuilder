@@ -1,0 +1,1 @@
+json.array! @command_requests, partial: 'command_requests/command_request', as: :command_request

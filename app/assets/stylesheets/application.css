@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require materialize/materialize
+ *= require materialize/materialize.clockpicker
+ *= require jstree/style.min
+ *= require leaflet/leaflet
+ *= require leaflet/leaflet.label
+ *= require leaflet/leaflet.draw
+ *= require mapshakers/L.Icon.Pulse
+ *= require selectize/selectize
+ *= require pages
+ *= require map
+ *= require alerts
+ *= require reports
+ *= require config
+ *= require travel_sheets
+ *= require custom
+
+
+
+ *= require fcio/lib/fullcalendar.min
+ *= require fcio/scheduler.min
+
+
+
+
+ *= require informations
+ *= require datatables/datatables.min
+ *= require step/materialize-stepper.min
+ *= require_self
+ * require flatpicker/flatpickr.min
+ * require bootstrap/bootstrap.min
+ */

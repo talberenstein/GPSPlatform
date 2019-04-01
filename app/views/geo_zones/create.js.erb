@@ -1,0 +1,9 @@
+<% if @geo_zone.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @geo_zone.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'geo_zone_row_config', geo_zone: @geo_zone) %>").appendTo("#geo_zones_table tbody")
+window.geo_zones.push(<%= raw(@geo_zone.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

@@ -1,0 +1,42 @@
+<div class="row nomargin">
+		<div class="col s12 nopadding optionsMenus " id="tracking">
+				<%= render "pages/map" %>
+		</div>
+		<div class="col s12 nopadding optionsMenus" id="alerts" hidden>
+				<%= render "pages/alerts" %>
+		</div>
+		<div class="col s12 nopadding optionsMenus" id="reports" hidden>
+				<%= render "pages/reports" %>
+		</div>
+		<div class="col s12 nopadding optionsMenus" id="travel_sheets" hidden>
+				<%= render "pages/travel_sheets" %>
+		</div>
+
+		<% unless current_user.company_viewer? %>
+				<div class="col s12 nopadding optionsMenus" id="configuration" hidden>
+						<%= render "pages/config" %>
+				</div>
+		<% end %>
+</div>
+
+
+
+<script>
+window.devices_positions = <%= raw(@device_positions.to_json) %>
+window.events = <%= raw(@events.to_json) %>
+window.devices = <%= raw(@devices.to_json) %>
+window.unseen_alerts = <%= raw(@unseen_alerts.to_json) %>
+window.companies = <%= raw(@companies.to_json) %>
+window.drivers = <%= raw(@drivers.to_json) %>
+window.groups = <%= raw(@groups.to_json) %>
+window.users = <%= raw(@users.to_json) %>
+window.travel_sheets = <%= raw(@travel_sheets.to_json) %>
+window.device_events = <%= raw(@device_events.to_json) %>
+window.geo_zones = <%= raw(@geo_zones.to_json) %>
+window.owners = <%= raw(@owners.to_json) %>
+window.couples_types = <%= raw(@couples_types.to_json) %>
+window.locations = <%= raw(@locations.to_json) %>
+    window.command_request = <%= raw(@command_requests.to_json) %>
+    window.geo_zones_histories_without_exit = <%= raw(@geo_zones_histories_without_exit.to_json) %>
+
+</script>

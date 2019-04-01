@@ -1,0 +1,23 @@
+
+#new_device_command_modal.modal{:style => "width: 50% !important ; height: 50% !important ;"}
+  %h4 Envío de Comandos
+  %br/
+  %br/
+  %b
+    %span Está por enviarle un comando a
+    %span#device_name_command{:style => "color: darkred;"}
+    %br/
+  / <b><span>El último comando aceptado por el dispositivo es: </span><span style="color: darkred;" id="device_command_text"></span><span> a las </span><span style="color: darkred;" id="device_command_date"></span></b>
+  %br/
+  %b
+    %span Presione rojo para cortar
+    %br/
+  %b
+    %span Presione verde para encender
+    %br/
+  %br/
+  %a#send_command_off.tooltipped.btn-floating.btn-large.waves-effect.waves-light.red.darken-3{"data-position" => "top", "data-target" => "send_command_modal", "data-tooltip" => "Enviar Corte"}
+    %i.material-icons power_settings_new
+  %a#send_command_on.tooltipped.btn-floating.btn-large.waves-effect.waves-light.green.darken-3{"data-position" => "top", "data-target" => "send_command_modal", "data-tooltip" => "Enviar Encendido"}
+    %i.material-icons power_settings_new
+= render 'device_command_send'

@@ -1,0 +1,39 @@
+<div class="row " style="overflow: hidden;">
+    <div class="col s12 nopadding">
+        <div id="map_path_report"></div>
+          <div id="device_info_map_path">
+            <div class="row nomargin">
+                <div class="col s4">
+
+                </div>
+                <div class="col s8">
+                    <div class="col s6 nopadding">
+                        <h5 style="color: #55889b;">Resumen</h5>
+                    </div>
+                    <div class="col s4 nopadding">
+                    </div>
+                    <div class="col s2 nopadding">
+                        <h5 style="color: #55889b;">Vehículo <span class="name"></span></h5>
+                    </div>
+                    <hr />
+                    <div class="col s6 nopadding" style="height: 128px;">
+                        <ul style="list-style-type: square !important;">
+                        <li><strong>Fecha:</strong> <span id="date"></span></li>
+                        <li><strong>Hora:</strong> <span id="time"></span></li>
+                        <li><strong>Velocidad:</strong> <span id="velocity"></span></li>                  
+                        </ul>
+                    </div>
+                    <div class="col s4 nopadding">
+                        
+                    </div>
+                    <div class="col s2 nopadding" style="padding: 20px;">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+window.points = <%= raw(@points.to_json) %>
+</script>

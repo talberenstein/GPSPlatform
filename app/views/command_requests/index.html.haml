@@ -1,0 +1,29 @@
+%h1 Listing command_requests
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Request time
+      %th Command text
+      %th Status
+      %th Result time
+      %th
+      %th
+      %th
+
+  %tbody
+    - @command_requests.each do |command_request|
+      %tr
+        %td= command_request.user
+        %td= command_request.request_time
+        %td= command_request.command_text
+        %td= command_request.status
+        %td= command_request.result_time
+        %td= link_to 'Show', command_request
+        %td= link_to 'Edit', edit_command_request_path(command_request)
+        %td= link_to 'Destroy', command_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Command request', new_command_request_path

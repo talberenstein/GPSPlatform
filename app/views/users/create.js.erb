@@ -1,0 +1,9 @@
+<% if @user.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @user.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'user_row_config', user: @user) %>").appendTo("#users_table tbody")
+window.users.push(<%= raw(@user.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

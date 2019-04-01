@@ -1,0 +1,44 @@
+<div class="col s12">
+  <blockquote class="hide-on-large-only">
+    <i class="material-icons left">report_problem</i>Alertas</a>
+  </blockquote>
+</div>
+<div class="row nomargin">
+  <div class="col s12 m3 nopadding" style="overflow-y: scroll;overflow-x: hidden;">
+    <!--<table class="bordered" id="alerts_table">-->
+      <!--<thead>-->
+        <!--<tr>-->
+          <!--<th class="">Unidad</th>-->
+          <!--<th class="">Evento</th>-->
+          <!--<th class="">Hora</th>-->
+          <!--<th class=""></th>-->
+          <!--<th class=""></th>-->
+        <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+<!---->
+      <!--</tbody>-->
+    <!--</table>-->
+<div>
+    <ul class="collapsible" data-collapsible="expandable">
+      <% @groups.each do |group| %>
+          <% next unless group.devices.any? %>
+
+          <li id="group_<%= group.id%>">
+            <div id="group_box" class="collapsible-header"><i class="material-icons">report_problem</i><%= group %><%= " (#{group.company.name.first(10)})" if current_user.global_admin? %><span id="count_alerts2"> (0)</span></div>
+            <div class="collapsible-body" style="background-color: yellow">
+                <span>Hay </span><span id="count_alerts">0</span><span> alerta(s) nueva(s) para <%= group.devices.size %> vehículo(s) de este grupo</span>
+            </div>
+          </li>
+
+      <% end %>
+
+    </ul>
+</div>
+
+    <br>
+  </div>
+    <div class="col s12 m9 nopadding">
+    <div id="map_alerts" class="mapGeneric_alert"></div>
+  </div>
+</div>

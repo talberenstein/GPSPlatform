@@ -1,0 +1,26 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "General") do |sheet|
+  sheet.add_row ["Unidad","Conductor","Fecha Desde","Lugar Desde","Fecha Hasta","Lugar Hasta","Velocidad Mayor","Duración en Tiempo","Duración en km"]
+  
+  @excesses.each do |imei, e|
+    e[:excesses].each do |excess|
+        difference = TimeDifference.between(excess[:end_of_exceed].gps_date, excess[:start_of_exceed].gps_date).in_general
+        time = ""
+        time += "#{difference[:hours]} horas, " if difference[:hours] > 0
+        time += "#{difference[:minutes]} minutos, " if difference[:minutes] > 0
+        time += "#{difference[:seconds]} segundos" if difference[:seconds] > 0
+
+        sheet.add_row [
+            Device.find_by(imei: imei).name, 
+            Device.find_by(imei: imei).driver.to_s,
+            excess[:start_of_exceed].gps_date.strftime("%d/%m/%Y %H:%M:%S"), 
+            Geocoder.address("#{excess[:start_of_exceed].geom.coordinates[1]}, #{excess[:start_of_exceed].geom.coordinates[0]}"),
+            excess[:end_of_exceed].gps_date.strftime("%d/%m/%Y %H:%M:%S"),
+            Geocoder.address("#{excess[:end_of_exceed].geom.coordinates[1]}, #{excess[:end_of_exceed].geom.coordinates[0]}"),
+            excess[:max_velocity].round,
+            time,
+            (distance_gps([excess[:start_of_exceed].geom.coordinates[1], excess[:start_of_exceed].geom.coordinates[0]], [excess[:end_of_exceed].geom.coordinates[1], excess[:end_of_exceed].geom.coordinates[0]]) / 1000).round(1)
+        ]
+    end
+  end
+end

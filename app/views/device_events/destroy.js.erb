@@ -1,0 +1,5 @@
+$("#device_events_table tbody tr[data-id='<%= @device_event.id %>']").remove()
+
+window.device_events = window.device_events.filter(function(device_event){
+    return device_event.id !== "<%= @device_event.id %>" 
+})

@@ -1,0 +1,10 @@
+<% if @device_event.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @device_event.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'device_event_row_config', device_event: @device_event) %>").appendTo("#device_events_table tbody")
+
+window.device_events.push(<%= raw(@device_event.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

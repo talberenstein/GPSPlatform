@@ -1,0 +1,26 @@
+<div class="current-menu-config" id="config-menu-users" hidden>
+  <blockquote>Usuarios</blockquote>
+  <table class="bordered" id="users_table">
+    <thead>
+    <tr>
+      <th class="">Email</th>
+      <th class="">Rol</th>
+      <th class="">Compañía</th>
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <button class="tooltipped" data-tooltip="Agregar Usuario" data-target="new_user_modal">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'users/user_row_config', collection: @users, as: :user, cache: true %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= render 'users/form_new', cache: true %>
+<%= render 'users/form_edit', cache: true %>

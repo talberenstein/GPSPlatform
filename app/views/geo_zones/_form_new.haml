@@ -1,0 +1,81 @@
+#new_geo_zone_modal.modal.map
+  %form#new_geo_zone_form{:action => geo_zones_path, "data-remote" => "true", :method => "POST"}
+    %input#new_geo_zone_geom{:name => "geo_zone[geom]", :required => "", :type => "hidden"}/
+    .modal-content
+      %h4 Nueva Geo Zona
+      = render 'shared/error_messages'
+      .s3
+        .input-field.col.s12
+          %input#new_geo_zone_name{:name => "geo_zone[name]", :required => "", :type => "text"}/
+          %label{:for => "new_geo_zone_name"} Nombre
+        %label Compañía
+        .input-field.col.s12
+          %select#new_geo_zone_company_id.selectize{:name => "geo_zone[company_id]", :required => ""}
+            - Company.all.each do |c|
+              %option{:value => "#{c.id}"}= c.name
+      .row
+        .col.s4
+          %input{:name => "geo_zone[enter_alert]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_enter_alert{:checked => "checked", :name => "geo_zone[enter_alert]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_enter_alert"} Genera Alerta Entrada?
+        .col.s4
+          %input{:name => "geo_zone[exit_alert]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_exit_alert{:checked => "checked", :name => "geo_zone[exit_alert]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_exit_alert"} Genera Alerta Salida?
+        .col.s4
+          %input{:name => "geo_zone[send_report]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_send_report{:checked => "checked", :name => "geo_zone[send_report]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_send_report"} Genera Reporte
+        .col.s4
+          %input{:name => "geo_zone[panic]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_panic{:checked => "checked", :name => "geo_zone[panic]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_panic"} Genera Pánico
+        .col.s4
+          %input{:name => "geo_zone[shutdown]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_shutdown{:checked => "checked", :name => "geo_zone[shutdown]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_shutdown"} Corte Alimentación Principal
+        .col.s4
+          %input{:name => "geo_zone[restart_on]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_restart_on{:checked => "checked", :name => "geo_zone[restart_on]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_restart_on"} Restablecimiento de Alimentación Principal
+        .col.s4
+          %input{:name => "geo_zone[ignicion]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_ignicion{:checked => "checked", :name => "geo_zone[ignicion]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_ignicion"} Motor Encendido
+        .col.s4
+          %input{:name => "geo_zone[c_open]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_c_open{:checked => "checked", :name => "geo_zone[c_open]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_c_open"} Puerta de Cabina Abierta
+        .col.s4
+          %input{:name => "geo_zone[c_closed]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_c_closed{:checked => "checked", :name => "geo_zone[c_closed]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_c_closed"} Puerta de Cabina Cerrada
+        .col.s4
+          %input{:name => "geo_zone[desenganche]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_desenganche{:checked => "checked", :name => "geo_zone[desenganche]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_desenganche"} Desenganche
+        .col.s4
+          %input{:name => "geo_zone[cg_open]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_cg_open{:checked => "checked", :name => "geo_zone[cg_open]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_cg_open"} Puerta de Carga Abierta
+        .col.s4
+          %input{:name => "geo_zone[cg_closed]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_cg_closed{:checked => "checked", :name => "geo_zone[cg_closed]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_cg_closed"} Puerta de Carga Cerrada
+        .col.s4
+          %input{:name => "geo_zone[stop_report]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_stop_report{:checked => "checked", :name => "geo_zone[stop_report]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_stop_report"} Reporte Detenido
+        .col.s4
+          %input{:name => "geo_zone[excess_limit]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_excess_limit{:checked => "checked", :name => "geo_zone[excess_limit]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_excess_limit"} Exceso de Velocidad
+        .col.s4
+          %input{:name => "geo_zone[end_excess_limit]", :type => "hidden", :value => "0"}/
+          %input#new_geo_zone_end_excess_limit{:checked => "checked", :name => "geo_zone[end_excess_limit]", :type => "checkbox"}/
+          %label{:for => "new_geo_zone_end_excess_limit"} Fin de Exceso de Velocidad
+      #geozones_new_map
+    .modal-footer
+      %button.modal-action.waves-effect.waves-green.btn-flat{:type => "submit"} Guardar
+      %a.modal-action.modal-close.waves-effect.waves-green.btn-flat
+        Cerrar

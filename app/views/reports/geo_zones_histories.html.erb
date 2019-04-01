@@ -1,0 +1,41 @@
+<div class="row ">
+  <div class="col s12">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th class="">Unidad</th>
+          <th class="">Conductor</th>
+          <th class="">Geo Zona</th>
+          <th class="">Hora Ingreso</th>
+          <th class="">Lugar Ingreso</th>
+          <th class="">Km Ingreso</th>
+          <th class="">Hora Egreso</th>
+          <th class="">Lugar Egreso</th>
+          <th class="">Km Egreso</th>
+          <th class="">Tiempo de Permanencia</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @geo_zones_histories.each do |geo_zones_history| %>
+          <tr>
+            <td><%= geo_zones_history.device.name %></td>
+            <td><%= geo_zones_history.device.driver.to_s %></td>
+            <td><%= geo_zones_history.geo_zone.name %></td>
+            <td><%= geo_zones_history.enter_time.strftime("%d/%m/%Y %H:%M:%S") %></td>
+            <td><%= truncate Geocoder.address("#{geo_zones_history.enter_location.coordinates[1]}, #{geo_zones_history.enter_location.coordinates[0]}") %></td>
+            <td><%= (geo_zones_history.enter_odometer / 1000) if geo_zones_history.enter_odometer %></td>
+            <td><%= geo_zones_history.exit_time.strftime("%d/%m/%Y %H:%M:%S") if geo_zones_history.exit_time %></td>
+            <td><%= truncate(Geocoder.address("#{geo_zones_history.exit_location.coordinates[1]}, #{geo_zones_history.exit_location.coordinates[0]}")) if geo_zones_history.exit_location %></td>
+            <td><%= (geo_zones_history.exit_odometer / 1000) if geo_zones_history.exit_odometer %></td>
+            <td>
+              <% difference = TimeDifference.between(geo_zones_history.exit_time || Time.now, geo_zones_history.enter_time).in_general %>
+              <%= "#{difference[:hours]} horas, " if difference[:hours] > 0 %>
+              <%= "#{difference[:minutes]} minutos, " if difference[:minutes] > 0 %>
+              <%= "#{difference[:seconds]} segundos" if difference[:seconds] > 0 %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

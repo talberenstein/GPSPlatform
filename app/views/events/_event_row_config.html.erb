@@ -1,0 +1,24 @@
+    <tr data-id="<%= event.id %>">
+        <td class="">
+            <%= event.name %>
+        </td>
+        <td class="">
+            <%= event.syrus %>
+        </td>
+        <td class="">
+            <%= event.tk103 %>
+        </td>
+         <td class="">
+            <%= event.amos3005 %>
+        </td>
+        <td class="">
+            <a href="#edit_event_modal" class="edit_event_btn"><%= image_tag 'edit.svg' %></a>
+        </td>
+        <td class="">
+            <%= link_to event, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+                <%= image_tag 'delete.svg' %>
+            <% end %>
+        </td>
+        <td class="">
+        </td>
+    </tr>

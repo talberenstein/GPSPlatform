@@ -1,0 +1,5 @@
+$("#users_table tbody tr[data-id='<%= @user.id %>']").remove()
+
+window.users = window.users.filter(function(user){
+    return user.id !== "<%= @user.id %>" 
+})

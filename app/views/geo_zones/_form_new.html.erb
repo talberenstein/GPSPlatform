@@ -1,0 +1,116 @@
+<div id="new_geo_zone_modal" class="modal map">
+  <form method="POST" action="<%= geo_zones_path %>" id="new_geo_zone_form" data-remote="true">
+    <input type="hidden" id="new_geo_zone_geom" name="geo_zone[geom]" required>
+    <div class="modal-content">
+        <h4>Nueva Geo Zona</h4>
+
+    <%= render 'shared/error_messages' %>
+      <div class="s3">
+        <div class="input-field col s12">
+          <input class="" type="text" id="new_geo_zone_name" name="geo_zone[name]" required />
+          <label class="" for="new_geo_zone_name">Nombre</label>
+        </div>
+        <label>Compañía</label>
+        <div class="input-field col s12">
+          <select name="geo_zone[company_id]" id="new_geo_zone_company_id" class="selectize" required>
+            <% Company.all.each do |c| %>
+                <option value="<%= c.id %>"><%= c.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <input type="hidden" name="geo_zone[enter_alert]" value="0">
+          <input type="checkbox" id="new_geo_zone_enter_alert" class="" name="geo_zone[enter_alert]" checked>
+          <label for="new_geo_zone_enter_alert">Genera Alerta Entrada?</label>
+        </div>
+        <div class="col s4">
+          <input type="hidden" name="geo_zone[exit_alert]" value="0">
+          <input type="checkbox" id="new_geo_zone_exit_alert" class="" name="geo_zone[exit_alert]" checked>
+          <label for="new_geo_zone_exit_alert">Genera Alerta Salida?</label>
+        </div>
+        <div class="col s4">
+          <input type="hidden" name="geo_zone[send_report]" value="0">
+          <input type="checkbox" id="new_geo_zone_send_report" class="" name="geo_zone[send_report]" checked>
+          <label for="new_geo_zone_send_report">Genera Reporte</label>
+        </div>
+        <div class="col s4">
+          <input type="hidden" name="geo_zone[panic]" value="0">
+          <input type="checkbox" id="new_geo_zone_panic" class="" name="geo_zone[panic]" checked>
+          <label for="new_geo_zone_panic">Genera Pánico</label>
+        </div>
+
+      <div class="col s4">
+        <input type="hidden" name="geo_zone[shutdown]" value="0">
+        <input type="checkbox" id="new_geo_zone_shutdown" class="" name="geo_zone[shutdown]" checked>
+        <label for="new_geo_zone_shutdown">Corte Alimentación Principal</label>
+      </div>
+      <div class="col s4">
+        <input type="hidden" name="geo_zone[restart_on]" value="0">
+        <input type="checkbox" id="new_geo_zone_restart_on" class="" name="geo_zone[restart_on]" checked>
+        <label for="new_geo_zone_restart_on">Restablecimiento de Alimentación Principal</label>
+      </div>
+      <div class="col s4">
+        <input type="hidden" name="geo_zone[ignicion]" value="0">
+        <input type="checkbox" id="new_geo_zone_ignicion" class="" name="geo_zone[ignicion]" checked>
+        <label for="new_geo_zone_ignicion">Motor Encendido</label>
+      </div>
+      <div class="col s4">
+        <input type="hidden" name="geo_zone[c_open]" value="0">
+        <input type="checkbox" id="new_geo_zone_c_open" class="" name="geo_zone[c_open]" checked>
+        <label for="new_geo_zone_c_open">Puerta de Cabina Abierta</label>
+      </div>
+        <div class="col s4">
+      <input type="hidden" name="geo_zone[c_closed]" value="0">
+      <input type="checkbox" id="new_geo_zone_c_closed" class="" name="geo_zone[c_closed]" checked>
+      <label for="new_geo_zone_c_closed">Puerta de Cabina Cerrada</label>
+    </div>
+        <div class="col s4">
+      <input type="hidden" name="geo_zone[desenganche]" value="0">
+      <input type="checkbox" id="new_geo_zone_desenganche" class="" name="geo_zone[desenganche]" checked>
+      <label for="new_geo_zone_desenganche">Desenganche</label>
+    </div>
+        <div class="col s4">
+      <input type="hidden" name="geo_zone[cg_open]" value="0">
+      <input type="checkbox" id="new_geo_zone_cg_open" class="" name="geo_zone[cg_open]" checked>
+      <label for="new_geo_zone_cg_open">Puerta de Carga Abierta</label>
+    </div>
+        <div class="col s4">
+      <input type="hidden" name="geo_zone[cg_closed]" value="0">
+      <input type="checkbox" id="new_geo_zone_cg_closed" class="" name="geo_zone[cg_closed]" checked>
+      <label for="new_geo_zone_cg_closed">Puerta de Carga Cerrada</label>
+    </div>
+      <div class="col s4">
+        <input type="hidden" name="geo_zone[stop_report]" value="0">
+        <input type="checkbox" id="new_geo_zone_stop_report" class="" name="geo_zone[stop_report]" checked>
+        <label for="new_geo_zone_stop_report">Reporte Detenido</label>
+      </div>
+      <div class="col s4">
+        <input type="hidden" name="geo_zone[excess_limit]" value="0">
+        <input type="checkbox" id="new_geo_zone_excess_limit" class="" name="geo_zone[excess_limit]" checked>
+        <label for="new_geo_zone_excess_limit">Exceso de Velocidad</label>
+      </div>
+      <div class="col s4">
+        <input type="hidden" name="geo_zone[end_excess_limit]" value="0">
+        <input type="checkbox" id="new_geo_zone_end_excess_limit" class="" name="geo_zone[end_excess_limit]" checked>
+        <label for="new_geo_zone_end_excess_limit">Fin de Exceso de Velocidad</label>
+      </div>
+
+      </div>
+
+
+
+
+      <div id="geozones_new_map">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="modal-action waves-effect waves-green btn-flat">Guardar</button>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">
+      Cerrar
+    </a>
+  </div>
+      </form>
+
+</div>

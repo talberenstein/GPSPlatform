@@ -1,0 +1,7 @@
+$("#events_table tbody tr[data-id='<%= @event.id %>']").remove()
+$("#new_device_event_event_id option[value='<%= @event.id %>']").remove()
+$("#edit_device_event_event_id option[value='<%= @event.id %>']").remove()
+
+window.events = window.events.filter(function(event){
+    return event.id !== "<%= @event.id %>" 
+})

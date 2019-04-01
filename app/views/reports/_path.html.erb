@@ -1,0 +1,41 @@
+<div id="path_report_modal" class="modal">
+  <form method="GET" action="<%= reports_path_path %>" id="path_report_form" target="_blank">
+    <div class="modal-content">
+      <h5 class="">Reporte de Recorrido</h5>
+      <div class="row">
+        <div class="input-field col s8">
+          <input class="datepicker" type="date" id="path_from_date" name="from_date" required />
+          <label class="" for="path_from_date">Desde Fecha</label>
+        </div>
+        <div class="input-field col s4">
+            <label for="path_from_time">Desde Hora</label>
+            <input id="path_from_time" class="timepicker" type="time" data-default="00:00:00" name="from_time" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s8">
+          <input class="datepicker" type="date" id="path_to_date" name="to_date" required />
+          <label class="" for="path_to_date">Hasta Fecha</label>
+        </div>
+        <div class="input-field col s4">
+            <label for="path_to_time">Hasta Hora</label>
+            <input id="path_to_time" class="timepicker" type="time" data-default="00:00:00" name="to_time" required>
+        </div>
+      </div>
+      <div>
+        <label for="speeds_devices">Unidad</label>
+        <select name="imei" id="path_devices" class="selectize" required>
+          <% (current_user.global_admin? ? Device : current_user.company.devices).all.each do |d| %>
+          <option value="<%= d.imei %>"><%= d.name %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</button>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">
+        Cancelar
+      </a>
+    </div>
+  </form>
+</div>

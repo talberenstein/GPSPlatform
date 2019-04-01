@@ -1,0 +1,1 @@
+json.partial! "command_requests/command_request", command_request: @command_request

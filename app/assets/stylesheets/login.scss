@@ -1,0 +1,63 @@
+/*
+ *= require materialize/materialize.min
+ *= require_self
+*/
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	background-image: image-url('login-bg.jpg') !important;
+	background-repeat: no-repeat !important;
+    background-size: cover !important; 
+	background: #fff;
+
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+input[type=email], input[type=password]{
+	background-color: white !important;
+	border-radius: 1px !important;
+	text-align: center;
+
+}
+.subtitle{
+	color: #fff !important;
+	font-size: 24px;
+}
+
+.indigo{
+	background-color: #55889b !important;
+}
+
+a{
+	color: #fff !important;
+}
+
+.gray-text{
+	color: #878787 !important;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+
+.flash{
+	margin: 10px;
+	color: white;
+}

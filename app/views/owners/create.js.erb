@@ -1,0 +1,11 @@
+<% if @owner.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @owner.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'owner_row_config', owner: @owner) %>").appendTo("#owner_table tbody")
+
+
+window.owners.push(<%= raw(@owner.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

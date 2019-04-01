@@ -1,0 +1,2 @@
+class AllowedZone < ApplicationRecord
+end

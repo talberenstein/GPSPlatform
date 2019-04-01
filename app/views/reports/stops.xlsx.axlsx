@@ -1,0 +1,23 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "General") do |sheet|
+  sheet.add_row ["Unidad","Conductor","Fecha Desde","Fecha Hasta","Lugar","Duración en Tiempo"]
+  
+  @stops.each do |imei, s|
+    s[:stops].each do |stop|
+        difference = TimeDifference.between(stop[:end_of_stop].gps_date, stop[:start_of_stop].gps_date).in_general
+        time = ""
+        time += "#{difference[:hours]} horas, " if difference[:hours] > 0
+        time += "#{difference[:minutes]} minutos, " if difference[:minutes] > 0
+        time += "#{difference[:seconds]} segundos" if difference[:seconds] > 0
+
+        sheet.add_row [
+            Device.find_by(imei: imei).name, 
+            Device.find_by(imei: imei).driver.to_s,
+            stop[:start_of_stop].gps_date.strftime("%d/%m/%Y %H:%M:%S"), 
+            stop[:end_of_stop].gps_date.strftime("%d/%m/%Y %H:%M:%S"),
+            Geocoder.address("#{stop[:start_of_stop].geom.coordinates[1]}, #{stop[:start_of_stop].geom.coordinates[0]}"),
+            time
+        ]
+    end
+  end
+end

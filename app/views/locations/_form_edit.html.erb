@@ -1,0 +1,35 @@
+<div id="edit_location_modal" class="modal map">
+		<form method="PUT" action="<%= locations_path %>" id="edit_location_form" data-remote="true">
+
+				<div class="modal-content">
+						<h4>Editar ubicación</h4>
+
+						<%= render 'shared/error_messages' %>
+						<div class="row">
+								<div class="input-field col s6">
+										<input class="location_input" type="text" id="edit_location_name" name="location[location_name]" required/>
+										<label for="edit_location_name">Nombre</label>
+								</div>
+								<div class="input-field col s6">
+										<input class="location_input" id="location_search_box_location_edit" type="text" size="50" placeholder="Buscar...">
+										<label for="location_search_box_location_edit">Buscar dirección</label>
+								</div>
+								<div class="input-field col s12">
+										<input class="location_input" id="location_location_name_edit" type="text" name="location[location_address]" readonly>
+										<input class="location_input" type="hidden" id="location_search-box-point_edit" name="location[coordinate]">
+										<label for="location_location_name">Dirección</label>
+								</div>
+						</div>
+
+						<div id="location_edit_map" style="width: 100%; height: 300px;">
+						</div>
+				</div>
+				<div class="modal-footer">
+						<button type="submit" class="modal-action waves-effect waves-green btn-flat">Guardar</button>
+						<a class="modal-action modal-close waves-effect waves-green btn-flat">
+								Cerrar
+						</a>
+				</div>
+		</form>
+
+</div>

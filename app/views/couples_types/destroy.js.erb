@@ -1,0 +1,6 @@
+$("#couples_type_table tbody tr[data-id='<%= @couples_type.id %>']").remove()
+
+
+window.couples_type = window.couples_type.filter(function(couples_type){
+    return couples_type.id !== "<%= @couples_type.id %>"
+})

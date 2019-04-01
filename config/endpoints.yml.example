@@ -1,0 +1,6 @@
+development:
+  ws_url: ws://192.168.11.230:4000/socket
+staging:
+  ws_url: ws://demogps.gestsol.cl:4001/socket
+production:
+  ws_url: ws://gps.gestsol.cl:4000/socket

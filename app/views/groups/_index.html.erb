@@ -1,0 +1,29 @@
+<div class="current-menu-config" id="config-menu-groups" hidden>
+
+  <blockquote>Grupos</blockquote>
+
+  <table class="bordered striped" id="groups_table">
+    <thead>
+    <tr>
+      <th class="">Nombre</th>
+      <th class="">Compañía</th>
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <button class="tooltipped" data-tooltip="Agregar Grupo" data-target="new_group_modal">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @groups.each do |group| %>
+        <%= render 'groups/group_row_config', group: group %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= render 'groups/form_new' %>
+<%= render 'groups/form_edit' %>

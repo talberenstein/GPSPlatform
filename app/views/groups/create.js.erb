@@ -1,0 +1,11 @@
+<% if @group.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @group.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'group_row_config', group: @group) %>").appendTo("#groups_table tbody")
+$("<%= escape_javascript(render 'group_row_option', group: @group) %>").appendTo("#new_device_group_id")
+$("<%= escape_javascript(render 'group_row_option', group: @group) %>").appendTo("#edit_device_group_id")
+window.groups.push(<%= raw(@group.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

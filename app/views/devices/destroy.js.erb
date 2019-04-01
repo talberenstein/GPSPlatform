@@ -1,0 +1,11 @@
+$("#devices_table tbody tr[data-id='<%= @device.id %>']").remove()
+$("#map_table tbody tr[data-imei='<%= @device.imei %>']").remove()
+$("#path_devices option[value='<%= @device.imei %>']").remove()
+$("#speeds_devices option[value='<%= @device.imei %>']").remove()
+$("#stops_devices option[value='<%= @device.imei %>']").remove()
+$("#new_device_event_device_id option[value='<%= @device.id %>']").remove()
+$("#edit_device_event_device_id option[value='<%= @device.id %>']").remove()
+
+window.devices = window.devices.filter(function(device){
+    return device.imei !== "<%= @device.imei %>" 
+})

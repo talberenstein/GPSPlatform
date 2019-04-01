@@ -1,0 +1,150 @@
+<div class="row nopadding">
+
+  <div class="main-nav" id="main-nav">
+
+
+    <div id="devices_list" class="col s12 nopadding">
+
+      <ul class="collection" style="border: none;margin: 0.0rem 0 1rem 0;">
+        <li class="collection-item info_top_bar_map">
+          <div style="width: 205px;">
+            <div class="input-field col s12" style="margin-top: 15px">
+              <i class="material-icons prefix">search</i>
+              <input id="searchDevice" type="text" class="validate">
+              <label for="searchDevice">Buscar dispositivo</label>
+            </div>
+          </div>
+          <div style="width: 600px">
+            <div class="col s6" style="margin-top: 15px">
+														<span style="margin-left: 10px" id="engine_status_th" class="tooltipped " data-tooltip="Estado Motor">
+										          <%= image_tag '/icons/motor_general.svg', class: 'iconListTop' %>
+										        </span>
+
+              <span style="margin-left: 10px" id="gps_status_th" class="tooltipped " data-tooltip="Estado GPS">
+										          <%= image_tag 'gps-posicionamiento.svg', class: 'iconListTop' %>
+										        </span>
+
+              <span style="margin-left: 10px" id="gprs_status_th" class="tooltipped " data-tooltip="Estado GPRS">
+										          <%= image_tag 'sign-equipo.svg', class: 'iconListTop lastIconMarginTop' %>
+										        </span>
+
+
+              <span style="margin-left: 10px" id="track_changes_th" class="tooltipped " data-tooltip="Seguir">
+										          <%= image_tag 'track.svg', class: 'iconListTop' %>
+										        </span>
+            </div>
+          </div>
+
+        </li>
+
+      </ul>
+
+
+      <div id="jstree">
+
+        <ul>
+          <% @groups.each do |group| %>
+              <% next unless group.devices.any? %>
+              <li data-jstree='{"icon":"assets/track.svg"}' data-id="group_<%= group.id %>" data-parent="">(<%= group.devices.size %>
+                ) <%= group %> <%= "(#{group.company.name.first(10)})" if current_user.global_admin? %>
+                <ul>
+                  <% group.devices.each do |device| %>
+                      <li data-imei="<%= device.imei %>" data-id="device_<%= device.id %>" data-jstree='{"icon":"devices_icons/<%= device.icon %>.svg"}' class="iconList" id="show_checkbox_<%= device.imei %>">
+                      <span>
+                        <a href="#" class="device-show iconList" data-imei="<%= device.imei %>">
+                        <%= device.name.first(15) %>
+                      </a>
+                      </span>
+                        <span class="">
+                        <a href="#" class="engine">
+                          <% if device.last_position_frame %>
+                            <% if device.last_position_frame.driving? %>
+						                        <!--motorenmovimiento -->
+                                  <%= image_tag '/map/engine_green.svg', style: 'margin-left: 10px !important;width: 7%; height: 90%',class: "engine_status" %>
+                            <% elsif device.last_position_frame.stopped_with_ignition? %>
+						                        <!--detenidomotorencendido -->
+                                  <%= image_tag '/map/engine_yellow.svg', style: 'margin-left: 10px !important;width: 7%; height: 90%',class: "engine_status" %>
+                            <% elsif device.last_position_frame.stopped_without_ignition? %>
+						                        <!--detenidomotorapagado -->
+                                  <%= image_tag '/map/engine_red.svg', style: "margin-left: 10px !important;width: 7%; height: 90%",class: "engine_status" %>
+                            <% end %>
+                          <% else %>
+				                        <!--detenidomotorapagado -->
+                              <%= image_tag '/map/engine_red.svg', style: 'margin-left: 10px !important;width: 7%; height: 90%',class: "engine_status" %>
+                          <% end %>
+                        </a>
+                        <a href="#">
+                          <%= device.last_position_frame && device.last_position_frame.gps_valid ? image_tag('/map/gps_green.svg', style: 'margin-left: 15px !important; width: 7%; height: 90%' , class: 'iconList') : image_tag('/map/gps_red.svg', style: 'margin-left: 15px !important; width: 7%; height: 90%' , class: 'iconList') %>
+                        </a>
+                        <a href="#" class="gprs_online">
+                          <%= device.last_position_frame && device.last_position_frame.gps_date > Time.now - (60 * 15) ? image_tag('/map/gprs_green.svg', style: 'margin-left: 15px !important; width: 7%; height: 90%' , class: 'img_gprs') : image_tag('/map/gprs_red.svg', style: 'margin-left: 15px !important;width: 7%; height: 90%' , class: 'img_gprs_red') %>
+                        </a>
+
+
+                        <a href="#" data-imei="<%= device.imei %>" class="track_checkbox">
+                          <%= image_tag '/map/track-alerta.svg', style: 'margin-left: 20px !important; width: 7%; height: 90%', class: "iconList" %>
+                        </a>
+
+                      </span>
+                      </li>
+
+                  <% end %>
+                </ul>
+              </li>
+
+          <% end %>
+        </ul>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrap">
+
+
+    <div id="collapse_devices_menu" >
+      <a href="#main-nav" class="tooltipped z-depth-3 open-menu waves-effect waves-light btn" data-position="bottom" data-tooltip="Abrir menú">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </a>
+      <a href="#" class="tooltipped z-depth-3 close-menu waves-effect waves-light btn" data-position="bottom" data-tooltip="Cerrar menú">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </a>
+    </div>
+
+    <div id="mapid" class="mapGeneric"></div>
+
+
+              <div id="resume_open" class="collapsible-header waves-effect waves-light btn col s6 left"><i class="material-icons">arrow upward</i> <span id="open_resume_text">Abrir Resumen y Acciones</span> </div>
+              <div id="resume_close" class="collapsible-header waves-effect waves-light btn col s6 right"><i class="material-icons">arrow downward</i><span id="close_resume_text">Cerrar Resumen y Acciones</span></div>
+
+              <div class="col s6">
+                <br>
+                <div class="col s6"><i class="material-icons left backGColor">today</i><strong>Fecha:</strong><span id="date"></span></div>
+                <div class="col s6"><i class="material-icons left backGColor">alarm</i><strong>Hora:</strong> <span id="time"></span></div><br>
+                <br>
+                <div class="col s6"><i class="material-icons left backGColor">place</i><strong>Dirección:</strong><span id="address"></span></div>
+                <div class="col s6"><i class="material-icons left backGColor">timeline</i><strong>Velocidad:</strong> <span id="velocity"></span></div><br>
+
+                <br>
+                <div class="col s12"><i class="material-icons left backGColor">shop</i><strong>Sensores Detectados:</strong> <span id="time"></span></div><br>
+              </div>
+
+
+              <div class="col s4 right">
+                <br>
+                <% if current_user.send_command? %>
+                    <a class="waves-effect waves-light btn" data-target="new_device_command_modal" id="new_command" style="width: 80%;"><i class="material-icons left">rss_feed</i>Enviar Comando</a>
+                <% end %>
+                <br>
+                <br>
+                <a class="waves-effect waves-light btn path_report_map_btn" id="path_report_map_btn" target="_blank" style="width: 80%;"><i class="material-icons left">assignment</i>Reporte</a>
+              </div>
+
+
+
+  </div>
+
+</div>
+
+<%= render 'device_command_new' %>

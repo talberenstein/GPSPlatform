@@ -1,0 +1,11 @@
+<% if @event.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @event.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'event_row_config', event: @event) %>").appendTo("#events_table tbody")
+$("<%= escape_javascript(render 'event_row_option', event: @event) %>").appendTo("#new_device_event_event_id")
+$("<%= escape_javascript(render 'event_row_option', event: @event) %>").appendTo("#edit_device_event_event_id")
+window.events.push(<%= raw(@event.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

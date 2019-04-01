@@ -1,0 +1,30 @@
+<div class="current-menu-config" id="config-menu-device-events" hidden>
+
+  <blockquote>Eventos de Unidades</blockquote>
+
+  <table class="bordered" id="device_events_table">
+    <thead>
+    <tr>
+      <th class="">Evento</th>
+      <th class="">Unidad</th>
+      <th class="">Genera Alerta</th>
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <button class="tooltipped" data-tooltip="Agregar Evento Unidad" data-target="new_device_event_modal">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @device_events.each do |device_event| %>
+        <%= render 'device_events/device_event_row_config', device_event: device_event %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= render 'device_events/form_new' %>
+<%= render 'device_events/form_edit' %>

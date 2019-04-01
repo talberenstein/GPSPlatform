@@ -1,0 +1,5 @@
+$("#locations_table tbody tr[data-id='<%= @location.id %>']").remove()
+
+window.locations = window.locations.filter(function(location){
+    return location.id !== "<%= @location.id %>"
+})

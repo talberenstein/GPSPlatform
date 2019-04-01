@@ -1,0 +1,25 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "General") do |sheet|
+  sheet.add_row ["Unidad","Conductor","Geo Zona","Hora Ingreso","Lugar Ingreso","Km Ingreso","Hora Egreso","Lugar Egreso","Km Egreso","Tiempo de Permanencia"]
+  
+  @geo_zones_histories.each do |geo_zones_history|
+    difference = TimeDifference.between(geo_zones_history.exit_time || Time.now, geo_zones_history.enter_time).in_general
+    time = ""
+    time += "#{difference[:hours]} horas, " if difference[:hours] > 0
+    time += "#{difference[:minutes]} minutos, " if difference[:minutes] > 0
+    time += "#{difference[:seconds]} segundos" if difference[:seconds] > 0
+
+    sheet.add_row [
+        geo_zones_history.device.name,
+        geo_zones_history.device.driver.name,
+        geo_zones_history.geo_zone.name,
+        geo_zones_history.enter_time.strftime("%d/%m/%Y %H:%M:%S"), 
+        Geocoder.address("#{geo_zones_history.enter_location.coordinates[1]}, #{geo_zones_history.enter_location.coordinates[0]}"),
+        geo_zones_history.enter_odometer ? (geo_zones_history.enter_odometer / 1000) : '-',
+        geo_zones_history.exit_time ? geo_zones_history.exit_time.strftime("%d/%m/%Y %H:%M:%S") : '-',
+        geo_zones_history.exit_location ? Geocoder.address("#{geo_zones_history.exit_location.coordinates[1]}, #{geo_zones_history.exit_location.coordinates[0]}") : '-',
+        geo_zones_history.exit_odometer ? (geo_zones_history.exit_odometer / 1000) : '-',
+        time
+    ]
+  end
+end

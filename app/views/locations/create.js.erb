@@ -1,0 +1,9 @@
+<% if @location.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @location.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>");
+<% else %>
+$("<%= escape_javascript(render 'location_row_config', location: @location) %>").appendTo("#locations_table tbody");
+window.locations.push(<%= raw(@location.to_json) %>);
+$('.modal.open form')[0].reset();
+$('#new_location_modal').modal('close');
+<% end %>
+

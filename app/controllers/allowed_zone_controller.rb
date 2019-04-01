@@ -1,0 +1,2 @@
+class AllowedZoneController < ApplicationController
+end

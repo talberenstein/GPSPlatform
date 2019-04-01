@@ -1,0 +1,51 @@
+<div id="edit_couples_types_modal" class="modal">
+  <form method="PUT" action="<%= couples_types_path %>" id="edit_couples_type_form" data-remote="true">
+    <div class="modal-content">
+      <h4>Editar Acoplado</h4>
+
+      <%= render 'shared/error_messages' %>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_couples_type_couple_name" name="couples_type[couple_name]" required/>
+          <label class="" for="edit_couples_type_couple_name">Tipo de acoplado</label>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="input-field col s12 m6">
+          <input class="" type="text" id="edit_couples_type_high" name="couples_type[high]" required/>
+          <label class="" for="edit_couples_type_high">Alto (Cm)</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <input class="" type="text" id="edit_couples_type_width" name="couples_type[width]" required/>
+          <label class="" for="edit_couples_type_width">Ancho (Cm)</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-field col s12 m6">
+          <input class="" type="text" id="edit_couples_type_long" name="couples_type[long]" required/>
+          <label class="" for="edit_couples_type_long">Largo (Cm)</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <input class="" type="text" id="edit_couples_type_weight" name="couples_type[weight]" required/>
+          <label class="" for="edit_couples_type_weight">Peso (Kg)</label>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action waves-effect waves-green btn-flat">Guardar</button>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">
+        Cerrar
+      </a>
+    </div>
+  </form>
+</div>

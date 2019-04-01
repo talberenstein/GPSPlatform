@@ -1,0 +1,51 @@
+
+  <div class="row">
+    <div class="col s12">
+      <blockquote><h4>Configuración</h4></blockquote>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="collection ">
+        <a href="#" class="collection-item config-menu" data-menu="users"><i class="material-icons left">person</i>Usuarios</a>
+        <a href="#" class="collection-item config-menu" data-menu="drivers"><i class="material-icons left">directions_car</i>Conductores</a>
+        <a href="#" class="collection-item config-menu" data-menu="devices"><i class="material-icons left">perm_device_information</i>Dispositivos</a>
+        <a href="#" class="collection-item config-menu" data-menu="device-events"><i class="material-icons left">warning</i>Alertas</a>
+        <a href="#" class="collection-item config-menu" data-menu="geo-zones"><i class="material-icons left">my_location</i>Geo Zonas</a>
+        <a href="#" class="collection-item config-menu" data-menu="groups"><i class="material-icons left">group_work</i>Grupos</a>
+
+        <% if current_user.global_admin? %>
+            <a href="#" class="collection-item config-menu" data-menu="companies"><i class="material-icons left">book</i>Compañias</a>
+        <% end %>
+
+        <% if current_user.global_admin? %>
+            <a href="#" class="collection-item config-menu" data-menu="events"><i class="material-icons left">add_alert</i>Eventos</a>
+        <% end %>
+
+        <% if current_user.global_admin? %>
+            <a href="#" class="collection-item config-menu" data-menu="owners"><i class="material-icons left">store_mall_directory</i>Propietarios de cargas</a>
+        <% end %>
+
+        <a href="#" class="collection-item config-menu" data-menu="couples-types"><i class="material-icons left">rv_hookup</i>Acoplados</a>
+        <a href="#" class="collection-item config-menu" data-menu="locations"><i class="material-icons left">location_on</i>Ubicaciones</a>
+
+      </div>
+    </div>
+
+    <div class="col s12 m9 nopadding">
+      <div class="card-panel">
+        <%= render 'users/index' %>
+        <%= render 'drivers/index' %>
+        <%= render 'devices/index' %>
+        <%= render 'device_events/index' %>
+        <%= render 'groups/index' %>
+        <%= render 'companies/index' if current_user.global_admin? %>
+        <%= render 'events/index' if current_user.global_admin? %>
+        <%= render 'geo_zones/index' %>
+        <%= render 'couples_types/index' %>
+        <%= render 'owners/index' if current_user.global_admin? %>
+        <%= render 'locations/index' %>
+      </div>
+    </div>
+  </div>
+

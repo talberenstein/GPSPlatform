@@ -1,0 +1,91 @@
+
+<div class="row" style="margin-bottom: 0px;">
+		<div class="col s6">
+				<blockquote>
+						<h4>Hoja de viajes</h4>
+				</blockquote>
+		</div>
+		<div class="col s6 right">
+				<br>
+				<button class="tooltipped waves-effect waves-light btn right" data-tooltip="Agregar hoja de viajes" data-target="new_travel_sheets_modal" data-position="left">
+						<i class="material-icons left">add</i> Nueva hoja
+				</button>
+		</div>
+
+		<div class="row">
+
+				<div class="col s12">
+						<ul class="tabs">
+								<li class="tab col s4"><a class="active" href="#to_search_travel_sheet">Búsqueda Hojas de Ruta</a></li>
+								<li class="tab col s4"><a href="#timeline_travel_sheet">Cronología Hojas de Ruta</a></li>
+						</ul>
+				</div>
+				<div id="timeline_travel_sheet" class="col s12" style="max-width: 800px">
+						<br>
+						<div id="calendar"></div>
+				</div>
+				<div id="to_search_travel_sheet" class="col s12" >
+						<br>
+						<div class="row">
+								<div class="col s5">
+										<div class="input-field col s6">
+												<i class="material-icons prefix">date_range</i>
+												<input class="datepicker_travel" type="date" id="travel_sheet_search_from_date" name="travel_sheet_search_from_date" required/>
+												<label class="" for="travel_sheet_search_from_date">Fecha inicial</label>
+										</div>
+										<div class="input-field col s6">
+												<i class="material-icons prefix">date_range</i>
+												<input class="datepicker_travel" type="date" id="travel_sheet_search_to_date" name="travel_sheet_search_to_date" required/>
+												<label class="" for="travel_sheet_search_to_date">Fecha final</label>
+										</div>
+								</div>
+								<div class="col s3">
+										<button class="tooltipped waves-effect waves-light btn" id="search_travel_sheets" data-tooltip="Buscar" data-position="left">
+												<i class="material-icons left">search</i> Buscar
+										</button>
+								</div>
+								<div class="col s12">
+										<table class="cell-border row-border stripe display" id="travel_sheets_table_principal" style="top: -30px !important;width: 100% !important;">
+												<thead class="td_color_blue">
+												<tr>
+														<td>Estado</td>
+														<td></td>
+														<td>Nombre</td>
+														<td>Conductor</td>
+														<td>Unidad</td>
+														<td>Tipo</td>
+														<td>Propietario de la carga</td>
+														<td>Fecha viaje</td>
+														<td>Creado el</td>
+														<td>Editar</td>
+														<td>Eliminar</td>
+														<td>Detalles</td>
+														<td>Opciones</td>
+
+												</tr>
+												</thead>
+												<tbody>
+
+
+												</tbody>
+										</table>
+								</div>
+
+						</div>
+
+				</div>
+
+		</div>
+
+
+</div>
+
+
+
+
+<%= render 'travel_sheets/form_new' %>
+<%= render 'travel_sheets/form_edit' %>
+
+
+
+

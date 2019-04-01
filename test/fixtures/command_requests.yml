@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  request_time: 2017-04-25 16:22:15
+  command_text: MyString
+  status: 1
+  result_time: 2017-04-25 16:22:15
+
+two:
+  user: two
+  request_time: 2017-04-25 16:22:15
+  command_text: MyString
+  status: 1
+  result_time: 2017-04-25 16:22:15

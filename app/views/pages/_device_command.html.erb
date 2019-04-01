@@ -1,0 +1,23 @@
+
+<div id="new_device_command_modal" class="modal" style="width: 50% !important ; height: 50% !important ;">
+  <h4>Envío de Comandos</h4>
+  <br>
+  <br>
+
+  <b><span>Está por enviarle un comando a </span><span style="color: darkred;" id="device_name_command"></span><br></b>
+  <!--<b><span>El último comando aceptado por el dispositivo es: </span><span style="color: darkred;" id="device_command_text"></span><span> a las </span><span style="color: darkred;" id="device_command_date"></span></b>-->
+  <br>
+  <b><span>Presione rojo para cortar</span><br></b>
+  <b><span>Presione verde para encender</span><br></b>
+  <br>
+
+  <a id="send_command_off" class="tooltipped btn-floating btn-large waves-effect waves-light red darken-3" data-position="top" data-tooltip="Enviar Corte" data-target="send_command_modal"><i class="material-icons">power_settings_new</i></a>
+
+  <a id="send_command_on" class="tooltipped btn-floating btn-large waves-effect waves-light green darken-3" data-position="top" data-tooltip="Enviar Encendido" data-target="send_command_modal"><i class="material-icons">power_settings_new</i></a>
+
+</div>
+  </form>
+</div>
+</div>
+
+<%= render 'device_command_send' %>

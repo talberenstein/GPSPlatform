@@ -1,0 +1,16 @@
+<% if @device.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @device.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'device_row_config', device: @device) %>").appendTo("#devices_table tbody")
+
+$("<%= escape_javascript(render 'device_row_option', device: @device) %>").appendTo("#path_devices")
+$("<%= escape_javascript(render 'device_row_option', device: @device) %>").appendTo("#speeds_devices")
+$("<%= escape_javascript(render 'device_row_option', device: @device) %>").appendTo("#stops_devices")
+$("<%= escape_javascript(render 'device_row_option', device: @device) %>").appendTo("#new_device_event_device_id")
+$("<%= escape_javascript(render 'device_row_option', device: @device) %>").appendTo("#edit_device_event_device_id")
+
+window.devices.push(<%= raw(@device.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

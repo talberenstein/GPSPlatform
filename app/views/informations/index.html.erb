@@ -1,0 +1,44 @@
+<div class="row">
+		<div class="col s12">
+				<blockquote><h4>Reportes</h4></blockquote>
+		</div>
+</div>
+<div class="row">
+		<div class="col s12 m3">
+				<div class="collection ">
+						<a href="#" class="collection-item report-menu" data-menu="speed">
+								<i class="material-icons left">person</i>Velocidades
+						</a>
+						<a href="#" class="collection-item report-menu" data-menu="stop">
+								<i class="material-icons left">directions_car</i>Detenciones
+						</a>
+						<a href="#" class="collection-item report-menu" data-menu="automatic_travel">
+								<i class="material-icons left">perm_device_information</i>Recorridos con reproducción dinámica
+						</a>
+						<a href="#" class="collection-item report-menu" data-menu="geozone">
+								<i class="material-icons left">warning</i>E/S Geo Zonas
+						</a>
+						<a href="#" class="collection-item report-menu" data-menu="dialyActivities">
+								<i class="material-icons left">my_location</i>Información GPS por vehículo
+						</a>
+					<a href="#" class="collection-item report-menu" data-menu="activities">
+						<i class="material-icons left">view_headline</i>Actividades Diarias
+					</a>
+						<a href="#" class="collection-item report-menu" data-menu="alert">
+								<i class="material-icons left">group_work</i>Alertas
+						</a>
+				</div>
+		</div>
+
+		<div class="col s12 m9 nopadding">
+				<%= render 'informations/reports/speeds' %>
+				<%= render 'informations/reports/stops' %>
+				<%= render 'informations/reports/geozones' %>
+				<%= render 'informations/reports/dialyActivities' %>
+        <%= render 'informations/reports/activities' %>
+        <%= render 'informations/reports/alerts' %>
+		</div>
+		<script>
+				console.log('solo information')
+		</script>
+</div>

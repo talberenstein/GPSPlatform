@@ -1,0 +1,3 @@
+class TravelLocationController < ApplicationController
+
+end

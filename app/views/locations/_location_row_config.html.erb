@@ -1,0 +1,19 @@
+    <tr data-id="<%= location.id %>">
+        <td class="">
+            <%= location.location_name %>
+        </td>
+        <td class="">
+            <%= location.location_address %>
+        </td>
+
+        <td class="">
+            <a href="#edit_location_modal" class="edit_location_btn"><%= image_tag 'edit.svg' %></a>
+        </td>
+        <td class="">
+            <%= link_to location, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+                <%= image_tag 'delete.svg' %>
+            <% end %>
+        </td>
+        <td class="">
+        </td>
+    </tr>

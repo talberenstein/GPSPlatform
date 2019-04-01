@@ -1,0 +1,318 @@
+<div id="edit_travel_sheets_modal" class="modal modal-fixed-footer modal_travel_sheet">
+    <form method="POST" action="/travel_sheets" id="save_travel_sheets_form" data-remote="true">
+        <div class="modal-content">
+            <h4>Nueva hoja de ruta
+                <a href="#!" class="modal-action modal-close waves-effect waves-green  right">
+                    <i class="material-icons">close</i>
+                </a></h4>
+            <div class="row">
+                <ul class="stepper horizontal linear" style="min-height:750px">
+                    <li class="step active">
+                        <div class="step-title waves-effect">Informacion inicial</div>
+                        <div class="step-content">
+                            <div class="row inputHour">
+                                <div class="col s12">
+                                    <!--NOMBRE-->
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">assignment</i>
+                                        <input class=" val1" type="text" id="edit_travel_sheets_name" name="travel_sheet[travel_name]" required/>
+                                        <label class="" for="edit_travel_sheets_name">Nombre</label>
+                                    </div>
+                                    <!--DISPOSITIVO-->
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">directions_car</i>
+                                        <select class="icons  val1" name="travel_sheet[device]" id="travel_sheet_device" required>
+                                            <option value="" disabled selected>Seleccione un dispositivo</option>
+
+                                            <% (current_user.global_admin? ? Device.all : current_user.company.devices).each do |dev| %>
+                                                <option value="<%= dev.id %>" data-icon="devices_icons/<%= dev.icon %>.svg" class="left"><%= dev.name %>
+                                                    (<%= dev.imei %>)
+                                                </option>
+                                            <% end %>
+                                        </select>
+                                        <label>Dispositivos</label>
+                                    </div>
+                                </div>
+                                <div class="col s12">
+                                    <!--FECHA-->
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">date_range</i>
+                                        <input class="datepicker_travel  val1" type="date" id="date_travel" name="date_travel" required/>
+                                        <label class="" for="date_travel">Fecha de viaje</label>
+                                    </div>
+                                    <!--ACOPLADO-->
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">rv_hookup</i>
+                                        <select class="icons  val1" name="travel_sheet[coupled]" id="travel_sheet_couple">
+                                            <option value="" disabled selected>Seleccione un acoplado</option>
+
+                                            <% @couples_types.each do |cou| %>
+                                                <option value="<%= cou.id %>"><%= cou.couple_name %> (<%= cou.high %>
+                                                    X <%= cou.width %>
+                                                    X <%= cou.long %>) - (<%= cou.weight %> Kg)
+                                                </option>
+                                            <% end %>
+                                        </select>
+                                        <label>Acoplado</label>
+                                    </div>
+                                </div>
+                                <div class="col s12">
+                                    <!--Conductor-->
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">face</i>
+                                        <select class="icons val1" name="travel_sheet[driver]" id="travel_sheet_driver">
+                                            <option value="" disabled selected>Seleccione un conductor</option>
+
+                                            <% (current_user.global_admin? ? Driver.all : current_user.company.drivers).each do |cou| %>
+                                                <option value="<%= cou.id %>"><%= cou.name %></option>
+                                            <% end %>
+                                        </select>
+                                        <label>Conductor</label>
+                                    </div>
+                                    <!--Propietario de carga-->
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">store_mall_directory</i>
+                                        <select class="icons val1" name="travel_sheet[owner_]" id="travel_sheet_owner_cargo">
+                                            <option value="" disabled selected>Seleccione un propietario</option>
+
+                                            <% @owners.each do |owner| %>
+                                                <option value="<%= owner.id %>"><%= owner.owner_name %></option>
+                                            <% end %>
+                                        </select>
+                                        <label>Propietario de la carga</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-title waves-effect">Rutas</div>
+                        <div class="step-content">
+
+                            <div class="row inputHour">
+                                <div class="col s6">
+                                    <blockquote>Origen de la ruta</blockquote>
+                                </div>
+                                <div class="col s6">
+                                    <blockquote>Destinos de la ruta</blockquote>
+                                </div>
+
+                            </div>
+
+                            <div class="row inputHour">
+                                <!--Origen del viaje-->
+
+                                <div class="input-field col s3">
+                                    <i class="material-icons prefix">person_pin_circle</i>
+                                    <select name="travel_sheet[origin_travel]" id="origin_travel_select">
+                                        <option value="" disabled selected>Seleccione un origen de la ruta</option>
+
+                                        <% @locations.each do |location| %>
+                                            <option value="<%= location.id %>"><%= location.location_name %>
+                                                (<%= location.location_address %>)
+                                            </option>
+                                        <% end %>
+
+                                    </select>
+
+                                </div>
+                                <!--Hora Origen del viaje-->
+                                <div class="input-field col s2">
+                                    <i class="material-icons prefix">timer</i>
+                                    <label for="timepicker_travel_sheets_start">Horario de salida</label>
+                                    <input id="timepicker_travel_sheets_start" class="timepicker_travel_sheets" type="time">
+                                </div>
+
+                                <div class="col s1 center-align">
+                                    <i class="material-icons">arrow_forward</i>
+
+                                </div>
+                                <!--Destino del viaje-->
+                                <div class="input-field col s3">
+                                    <i class="material-icons prefix">place</i>
+                                    <select id="final_travel_select">
+                                        <option value="" disabled selected>Seleccione un destino de la ruta</option>
+                                        <% @locations.each do |location| %>
+                                            <option value="<%= location.id %>"><%= location.location_name %>
+                                                (<%= location.location_address %>)
+                                            </option>
+                                        <% end %>
+                                    </select>
+
+                                </div>
+
+                                <div class="input-field col s3">
+                                    <i class="material-icons prefix">edit_location</i>
+                                    <input class="" type="text" id="search_final_travel_sheet"/>
+                                    <label class="" for="search_final_travel_sheet">Buscar dirección de
+                                        destino</label>
+
+                                </div>
+
+                            </div>
+                            <!--mapa-->
+
+                            <div class="row inputHour">
+
+
+                                <div class="col s7">
+                                    <div id="preview_map" style="width: 100%;height: 450px;"></div>
+                                </div>
+                                <div class="col s5">
+                                    <ul class="collection collection-route">
+                                        <li class="collection-item avatar">
+                                            <i class="material-icons circle red">local_shipping</i>
+                                            <span class="title">Inicio</span>
+                                            <div class="row inputHour">
+                                                <div class="col s6">
+                                                    <span class="start_route_address"> - </span>
+                                                </div>
+                                                <div class="col s6 inputHour">
+                                                    <label>Horario de salida</label>
+                                                    <br>
+                                                    <span class="start_route_hour_i">--:--</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <span id="routes_travel_sheets"></span>
+                                        <li class="collection-item avatar">
+                                            <i class="material-icons circle flip_icon green">local_shipping</i>
+                                            <span class="title">Final</span>
+                                            <div class="row inputHour">
+                                                <div class="col s6 inputHour">
+                                                    <span class="start_route_address"> - </span>
+                                                </div>
+                                                <div class="col s6">
+                                                    <label>Horario de llegada aproximado</label>
+                                                    <br>
+                                                    <span class="start_route_hour_e">--:--</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--<div class="col s12">
+																		<a class="waves-effect waves-light btn right" id="generate_route">
+																				<i class="material-icons left">add_location</i>
+																				WAZE
+																		</a>
+										</div>-->
+
+
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-title waves-effect">Paradas intermedias</div>
+                        <div class="step-content">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">gps_fixed</i>
+                                    <select class="icons" name="travel_sheet[owner_]" id="pre_seleccted_zones">
+                                        <option value="" disabled selected>Seleccione una zona permitida</option>
+
+                                        <option value="1">Gestsol - plaza italia</option>
+
+                                    </select>
+                                    <label>Paradas permitidas</label>
+                                </div>
+                                <div class="col s12">
+                                    <div id="stopped_zones_map" style="width: 100%;height: 450px;"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-title waves-effect">Resumen</div>
+                        <div class="step-content">
+                            <div id="to_print">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <span class="card-title">Hoja de ruta</span>
+                                                <table class="bordered striped">
+                                                    <tr>
+                                                        <th>Nombre:</th>
+                                                        <td id="tnname">-</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Fecha:</th>
+                                                        <td id="tdate">-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Dispositivo:</th>
+                                                        <td id="tdeviceid">-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Acoplado:</th>
+                                                        <td id="tct">-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Conductor:</th>
+                                                        <td id="tdrive">-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Propietario de la carga:</th>
+                                                        <td id="towner">-</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <!--<a href="#" class="btn" id="draw">data</a>-->
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <span class="card-title">Ruta</span>
+                                                <table class="bordered striped">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Dirección</th>
+                                                        <th>Horario de ingreso</th>
+                                                        <th>Horario de salida</th>
+                                                    </tr>
+                                                    </tbody>
+                                                    <tbody id="table_travel_sheet_resume">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </form>
+    <div class="modal-footer">
+        <button class="waves-effect waves-dark btn modal-next" data-page="1" id="next_travel_sheet"><i class="material-icons right">arrow_forward</i> Continuar</button>
+        <button class="waves-effect waves-dark btn modal-prev left" ><i class="material-icons left">arrow_back</i> Atras</button>
+        <button class="waves-effect waves-dark btn green darken-1" id="save_travel_sheet" style="display:none"><i class="material-icons left">save</i> Guardar</button>
+    </div>
+
+</div>
+
+<div id="print-me"></div>
+
+
+
+

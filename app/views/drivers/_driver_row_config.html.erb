@@ -1,0 +1,21 @@
+    <tr data-id="<%= driver.id %>">
+        <td class="">
+            <%= driver.name %>
+        </td>
+        <td class="">
+            <%= driver.rut %>
+        </td>
+        <td class="">
+            <%= driver.company.name %>
+        </td>
+        <td class="">
+            <a href="#edit_driver_modal" class="edit_driver_btn"><%= image_tag 'edit.svg' %></a>
+        </td>
+        <td class="">
+            <%= link_to driver, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+                <%= image_tag 'delete.svg' %>
+            <% end %>
+        </td>
+        <td class="">
+        </td>
+    </tr>

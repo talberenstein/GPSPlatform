@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col s6 offset-s3">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name)) do |f| %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class='row'>
+      <div class='col s12'>
+        <input class='' type='password' name='user[password]' id='password' autofocus="true" autocomplete="off" required placeholder="Password"/>
+         <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> caracteres mínimo)</em><br />
+        <% end %>
+      </div>     
+    </div>
+
+    <div class='row'>
+      <div class='col s12'>
+        <input class='' type='password' name='user[password_confirmation]' id='password_confirmation' autocomplete="off" required placeholder="Confirmacion Password"/>
+      </div>
+    </div>
+
+      <div class='row'>
+        <div class='col s12'>
+          <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Cambiar Clave</button>
+        </div>
+      </div>
+<% end %>
+  </div>
+</div>

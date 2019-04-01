@@ -1,0 +1,76 @@
+<header>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo" style="margin-left: 50px;">
+          <%= image_tag 'logo.png', style: 'width: 100px;' %>
+        </a>
+
+        <a href="#" data-activates="mobile-side-menu" class="button-collapse show-on-large">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="left hide-on-med-and-down" style="margin-left: 120px;">
+          <% if controller_name != 'reports' %>
+              <li class="selectMenuOption activeButtonTop" id="btn_tracking" data-menu="tracking"><a href="#tracking">
+                <i class="material-icons left">near_me</i>Seguimiento</a>
+              </li>
+              <li class="selectMenuOption" data-menu="alerts"><a href="#alerts">
+                <i class="material-icons left">report_problem</i>Alertas</a>
+              </li>
+              <li class="" data-menu="reports"><a href="/informations/info" target="_blank">
+                <i class="material-icons left">content_paste</i>Reportes</a></li>
+              <li class="selectMenuOption" data-menu="travel_sheets"><a href="#travel_sheets">
+                <i class="material-icons left">local_shipping</i>Hoja de viajes</a></li>
+              <% unless current_user.company_viewer? %>
+                  <li class="selectMenuOption" data-menu="configuration"><a href="#configuration">
+                    <i class="material-icons left">settings</i>Configuración</a></li>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <ul id="mobile-side-menu" class="side-nav">
+    <li>
+      <div class="userView">
+        <div class="background">
+
+        </div>
+        <a href="#" style="float: right;">
+          <%= image_tag 'icono atras-19.png', width: 30 %>
+        </a>
+
+        <a href="#!user"><%= image_tag 'icono-usuario.svg', class: 'circle' %></a>
+        <a href="#!email"><span class="white-text email"><%= current_user.email %></span></a>
+      </div>
+    </li>
+
+    <% if controller_name != 'reports' %>
+        <li class="selectMenuOption" data-menu="tracking"><a href="#tracking">
+          <i class="material-icons left">near_me</i>Seguimiento</a>
+        </li>
+        <li class="selectMenuOption" data-menu="alerts"><a href="#alerts">
+          <i class="material-icons left">report_problem</i>Alertas</a>
+        </li>
+        <li class="" data-menu="reports"><a href="/informations/info" target="_blank">
+          <i class="material-icons left">content_paste</i>Reportes</a>
+        </li>
+        <li class="selectMenuOption" data-menu="travel_sheets"><a href="#travel_sheets">
+          <i class="material-icons left">local_shipping</i>Hoja de viajes</a>
+        </li>
+        <% unless current_user.company_viewer? %>
+            <li class="selectMenuOption" data-menu="configuration"><a href="#configuration">
+              <i class="material-icons left">settings</i>Configuración</a>
+            </li>
+        <% end %>
+    <% end %>
+    <li>
+      <%= link_to destroy_user_session_path,class: "fixToBottom waves-effect waves-light btn cyan darken-2" , method: :delete do %>
+          <i class="material-icons left white-text">exit_to_app</i>Salir
+      <% end %>
+    </li>
+  </ul>
+
+</header>
+
+

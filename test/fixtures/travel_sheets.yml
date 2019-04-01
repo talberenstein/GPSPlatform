@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  travel_name: MyString
+  device: 1
+  coupled: 1
+  driver: 1
+  owner: 1
+  origin_travel: 1
+  time_origin_travel: 2017-01-16 15:43:30
+  final_travel: 1
+  time_final_travel: 2017-01-16 15:43:30
+  time_travel_comeback: 2017-01-16 15:43:30
+
+two:
+  travel_name: MyString
+  device: 1
+  coupled: 1
+  driver: 1
+  owner: 1
+  origin_travel: 1
+  time_origin_travel: 2017-01-16 15:43:30
+  final_travel: 1
+  time_final_travel: 2017-01-16 15:43:30
+  time_travel_comeback: 2017-01-16 15:43:30

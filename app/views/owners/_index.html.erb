@@ -1,0 +1,33 @@
+<div class="current-menu-config" id="config-menu-owners" hidden>
+
+  <blockquote>Propietarios de cargas </blockquote>
+
+  <table class="bordered" id="owner_table">
+    <thead>
+    <tr>
+      <th class="">Nombre</th>
+      <th class="">Ubicación</th>
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <button data-target="new_owners_modal" class="tooltipped" data-tooltip="Agregar Propietario">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @owners.size == 0 %>
+        <tr>
+          <td colspan="7">No existen dueños de carga</td>
+        </tr>
+    <% end %>
+    <% @owners.each do |owner| %>
+        <%= render 'owners/owner_row_config', owner: owner %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= render 'owners/form_new' %>
+<%= render 'owners/form_edit' %>

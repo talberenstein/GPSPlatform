@@ -1,0 +1,24 @@
+<div class="current-menu-config" id="config-menu-companies" hidden>
+  <blockquote>Compañías</blockquote>
+
+  <table class="bordered" id="companies_table">
+    <thead>
+    <tr>
+      <th class="">Nombre</th>
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <button data-target="new_company_modal" class="tooltipped" data-tooltip="Agregar Compañía">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'companies/company_row_config', collection: @companies, as: :company, cached: true %>
+    </tbody>
+  </table>
+</div>
+
+<%= render 'companies/form_new' %>
+<%= render 'companies/form_edit' %>

@@ -1,0 +1,15 @@
+<tr data-id="<%= company.id %>">
+  <td class="">
+    <%= company.name %>
+  </td>
+  <td class="">
+    <a href="#edit_company_modal" class="edit_company_btn"><%= image_tag 'edit.svg' %></a>
+  </td>
+  <td class="">
+    <%= link_to company, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+    <%= image_tag 'delete.svg' %>
+    <% end %>
+  </td>
+  <td class="">
+  </td>
+</tr>

@@ -1,0 +1,76 @@
+<div id="edit_device_modal" class="modal">
+  <form method="PUT" action="<%= devices_path %>" id="edit_device_form" data-remote="true">
+
+    <div class="modal-content">
+    <h4 class="">Editar Unidad</h4>
+
+    <%= render 'shared/error_messages' %>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_device_name" name="device[name]" required />
+          <label class="" for="edit_device_name">Nombre</label>
+        </div>
+      </div>
+      <div class="row">
+        <label>Conductor</label>
+        <div class="input-field col s12">
+          <select name="device[driver_id]" id="edit_device_driver_id" class="selectize" required>
+            <% @drivers.each do |d| %>
+            <option value="<%= d.id %>"><%= d.to_s %> <%= "(#{d.company.name})" if current_user.global_admin? %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <label>Icono</label>
+        <div class="input-field col s12">
+          <select name="device[icon]" id="edit_device_icon" class="selectize" required>
+            <% ["Auto","Bus","Camion","Camion 34","Camioneta","Van"].each do |name| %>
+              <option value="<%= name.gsub(' ','').downcase %>"><%= name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <% if current_user.global_admin? %>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_device_imei" name="device[imei]" required />
+          <label class="" for="edit_device_imei">Imei</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_device_phone" name="device[phone]" required />
+          <label class="" for="edit_device_phone">Telefono</label>
+        </div>
+      </div>
+      <div class="row">
+        <label>Compañía</label>
+        <div class="input-field col s12">
+          <select name="device[company_id]" id="edit_device_company_id" class="selectize" required>
+            <% Company.all.each do |c| %>
+            <option value="<%= c.id %>"><%= c.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <% end %>
+      <div class="row">
+        <label>Grupo</label>
+        <div class="input-field col s12">
+          <select name="device[group_id]" id="edit_device_group_id" class="selectize" required>
+            <% @groups.each do |g| %>
+            <option value="<%= g.id %>"><%= g.to_s %> <%= "(#{g.company.name})" if current_user.global_admin? %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action waves-effect waves-green btn-flat">Guardar</button>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">
+        Cerrar
+      </a>
+    </div>
+  </form>
+</div>

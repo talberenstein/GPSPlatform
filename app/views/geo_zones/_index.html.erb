@@ -1,0 +1,31 @@
+<div class="current-menu-config" id="config-menu-geo-zones" hidden>
+
+  <blockquote>Geo Zonas</blockquote>
+
+  <table class="bordered" id="geo_zones_table">
+    <thead>
+    <tr>
+      <th class="">Nombre</th>
+      <th class="">Alerta Entrada</th>
+      <th class="">Alerta Salida</th>
+      <th class="">Compañía</th>
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <button class="tooltipped" data-tooltip="Agregar Geo Zona" data-target="new_geo_zone_modal">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @geo_zones.each do |geo_zone| %>
+        <%= render 'geo_zones/geo_zone_row_config', geo_zone: geo_zone %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= render 'geo_zones/form_new' %>
+<%= render 'geo_zones/form_edit' %>

@@ -1,0 +1,27 @@
+<tr data-id="<%= couples_type.id %>">
+  <td class="">
+    <%= couples_type.couple_name %>
+  </td>
+  <td class="">
+    <%= couples_type.high %>
+  </td>
+  <td class="">
+    <%= couples_type.width %>
+  </td>
+  <td class="">
+    <%= couples_type.long %>
+  </td>
+  <td class="">
+    <%= couples_type.weight %>
+  </td>
+  <td class="">
+    <a href="#edit_couples_types_modal" class="edit_couples_type_btn"><%= image_tag 'edit.svg' %></a>
+  </td>
+  <td class="">
+    <%= link_to couples_type, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+        <%= image_tag 'delete.svg' %>
+    <% end %>
+  </td>
+  <td class="">
+  </td>
+</tr>

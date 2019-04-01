@@ -1,0 +1,12 @@
+<% if @couples_type.errors.any? %>
+
+$('.modal.open .errors .col').html("<ul><%= raw @couples_type.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("<%= escape_javascript(render 'couples_type_row_config', couples_type: @couples_type) %>").appendTo("#couples_type_table tbody")
+
+
+window.couples_types.push(<%= raw(@couples_type.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

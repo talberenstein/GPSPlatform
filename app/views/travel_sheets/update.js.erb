@@ -1,0 +1,14 @@
+<% if @travelsheet.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @travelsheet.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("#travel_sheets_table tbody tr[data-id='<%= @travelsheet.id %>']").replaceWith("<%= escape_javascript(render 'travel_sheets_row_config', travelsheet: @travelsheet) %>")
+
+window.travel_sheets = window.travel_sheets.filter(function(travelsheet){
+    return travelsheet.id !== "<%= @travelsheet.id %>"
+})
+window.travel_sheets.push(<%= raw(@travelsheet.to_json) %>)
+
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

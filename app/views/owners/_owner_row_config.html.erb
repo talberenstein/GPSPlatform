@@ -1,0 +1,18 @@
+<tr data-id="<%= owner.id %>">
+  <td class="">
+    <%= owner.owner_name %>
+  </td>
+  <td class="">
+    <%= owner.location.location_name %>
+  </td>
+  <td class="">
+    <a href="#edit_owner_modal" class="edit_owner_btn"><%= image_tag 'edit.svg' %></a>
+  </td>
+  <td class="">
+    <%= link_to owner, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+        <%= image_tag 'delete.svg' %>
+    <% end %>
+  </td>
+  <td class="">
+  </td>
+</tr>

@@ -1,0 +1,6 @@
+<% if @travel_sheet.errors.any? %>
+var msg = <%= raw @travel_sheet.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %>"<br>"
+Materialize.toast(msg, 5000);
+<% else %>
+Materialize.toast("all ok", 5000);
+<% end %>

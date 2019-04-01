@@ -1,0 +1,2 @@
+module CouplesTypesHelper
+end

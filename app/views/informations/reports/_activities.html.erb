@@ -1,0 +1,59 @@
+<div class="row report_tab" id="report_tab_activities" hidden>
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content ">
+        <span class="card-title">Actividades Diarias</span>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s3">
+                <i class="material-icons prefix">date_range</i>
+                <input class="datepicker_information" type="date" id="report_i_date_activities" name="report_i_date" required/>
+                <label class="" for="report_i_date">Fecha inicial</label>
+              </div>
+              <div class="input-field col s3">
+                <i class="material-icons prefix">date_range</i>
+                <input class="datepicker_information" type="date" id="report_f_date_activities" name="report_f_date" required/>
+                <label class="" for="report_f_date">Fecha final</label>
+              </div>
+              <!--<div class="input-field col s3">
+                  <i class="material-icons prefix">trending_up</i>
+                  <input id="report_i_activities" type="number" class="validate" value="0">
+                  <label for="report_i_activities">Velocidad inicial (Km/h)</label>
+              </div>-->
+
+
+                <div class="input-field col s3">
+                  <select name="imeis[]" id="activities_devices" class="selectize" multiple required>
+                    <% (current_user.global_admin? ? Device : current_user.company.devices).all.each do |d| %>
+                        <option value="<%= d.imei %>"><%= d.name %></option>
+                    <% end %>
+                  </select>
+                  <label>Unidades</label>
+                </div>
+              <div class="col s12 right">
+                <a class="waves-effect waves-light btn right" id="search_activities_report"><i class="material-icons left">search</i>Buscar</a>
+              </div>
+            </div>
+            <div class="row">
+              <table id="activities_reports_table" class="display compact cell-border stripe" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                  <th>Unidada</th>
+                  <th>Fecha</th>
+                  <th>Km. Recorridos</th>
+                  <th>Ignición</th>
+                  <th>Horas Vehículo Encendido</th>
+                  <th>Horas Vehículo Apagado</th>
+                  <th>Horas Vehículo en Ralentí</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<% if @user.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @user.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("#users_table tbody tr[data-id='<%= @user.id %>']").replaceWith("<%= escape_javascript(render 'user_row_config', user: @user) %>")
+
+window.users = window.users.filter(function(user){
+    return user.id !== "<%= @user.id %>" 
+})
+window.users.push(<%= raw(@user.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

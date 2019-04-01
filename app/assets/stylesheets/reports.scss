@@ -1,0 +1,42 @@
+#map_path_report { height: 100%; }
+#map_speeds_graph { height: 100%; }
+#map_stops_graph { height: 100%; }
+#device_info_map_path {
+    border-top: 5px solid #68cee1;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    z-index: 400;
+    right: 0px;
+    padding: 10px;
+    ul{
+        margin: 10px;
+        li{
+            list-style-type: square;
+        }
+    }
+    *{
+        font-size: 12px;
+    }
+    img{
+        padding: 20px;
+    }
+}
+
+
+.slider{
+    height: 10px !important;
+    width: 400px !important;
+}
+
+.leaflet-bottom.leaflet-right{
+    left: 0;
+    right: inherit;
+
+    .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control{
+        position: relative;
+        bottom: 75px;
+        left: 10px;
+    }
+}

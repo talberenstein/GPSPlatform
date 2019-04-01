@@ -1,0 +1,39 @@
+# Inicializo el socket y me conecto
+socket = new Phoenix.Socket "<%= Rails.configuration.endpoints['ws_url'] %>"
+socket.onError (ev) ->
+    console.log("ERROR", ev)
+socket.onClose (e) ->
+    console.log("CLOSE", e)
+socket.connect()
+
+# Inicializo el channel y me conecto
+console.log socket.channel('devices:all', {})
+window.channel = socket.channel('devices:all', {})
+
+window.channel2 = socket.channel('commands:357042062903100', {})
+
+window.channel.onError (e) ->
+    console.log("something went wrong", e)
+window.channel.onClose (e)->
+    console.log("channel closed", e)
+
+window.channel.join()
+.receive("ok", (resp) ->
+    console.log("Joined successfully")
+)
+.receive("error", (resp) ->
+    console.log("Unable to join")
+)
+
+window.channel2.onError (e) ->
+  console.log("something went wrong", e)
+window.channel2.onClose (e)->
+  console.log("channel closed", e)
+
+window.channel2.join()
+  .receive("ok", (resp) ->
+  console.log("Joined successfully")
+)
+  .receive("error", (resp) ->
+  console.log("Unable to join")
+)

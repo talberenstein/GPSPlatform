@@ -1,0 +1,393 @@
+<style>
+		th, td {
+				border: 1px solid #b5b5b5 !important;
+				padding-left: 5px !important;
+		}
+</style>
+<% if @ts_details.empty? %>
+		<div id="error_explanation">
+				<h4>Codigo de hoja no existe...</h4>
+		</div>
+<% else %>
+		<% require "json" %>
+
+		<div class="row" style=" background-color: white; margin: 25px;">
+				<div class="col s12">
+						<table class="bordered striped">
+								<tr>
+										<th colspan="6">Hoja de viajes</th>
+								</tr>
+								<% @ts_details.each do |ts| %>
+										<tr>
+												<th>ID:</th>
+												<td><%= ts.id %></td>
+												<th>Nombre:</th>
+												<td><%= ts.travel_name %></td>
+												<th>Estado:</th>
+												<td><%= ts.state %></td>
+										</tr>
+										<tr>
+												<th>Compañia:</th>
+												<td>-</td>
+												<th>Fecha viaje:</th>
+												<td><%= ts.created_at.strftime("%d/%m/%Y") %></td>
+												<th>Creada el:</th>
+												<td><%= ts.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
+										</tr>
+								<% end %>
+								<tr>
+										<td colspan="7"></td>
+								</tr>
+								<tr>
+										<th colspan="6">Conductor</th>
+								</tr>
+								<% @ts_details.each do |ts| %>
+										<tr>
+												<th>Nombre:</th>
+												<td><%= ts.driver.name %></td>
+												<th>RUT/DNI:</th>
+												<td><%= ts.driver.rut %></td>
+												<th>Compañia:</th>
+												<td>-</td>
+										</tr>
+								<% end %>
+								<tr>
+										<td colspan="7"></td>
+								</tr>
+								<tr>
+										<th colspan="6">Dispositivo</th>
+								</tr>
+								<% @ts_details.each do |ts| %>
+										<tr>
+												<th>ID:</th>
+												<td><%= ts.device.id %></td>
+
+												<th>Nombre:</th>
+												<td><%= ts.device.name %></td>
+
+												<th>Imei:</th>
+												<td><%= ts.device.imei %></td>
+										</tr>
+										<tr>
+												<th>Tipo</th>
+												<td><%= ts.device.icon %></td>
+
+												<th>Grupo:</th>
+												<td><%= ts.device.group %></td>
+
+												<th>Telefono:</th>
+												<td><%= ts.device.phone %></td>
+										</tr>
+								<% end %>
+
+								<tr><td colspan="7"></td></tr>
+								<tr>
+										<th colspan="6">Carga</th>
+								</tr>
+								<% @ts_details.each do |ts| %>
+										<tr>
+												<th>Propietario:</th>
+												<td><%= ts.owner.owner_name %></td>
+
+												<th>De:</th>
+												<td colspan="3"><%= ts.owner.location.location_name %>
+														- <%= ts.owner.location.location_address %></td>
+
+										</tr>
+										<tr>
+												<th>Acoplado:</th>
+												<td><%= ts.couples_type.couple_name %></td>
+
+												<th>Medidas:</th>
+												<td colspan="3">
+														Alto: <%= ts.couples_type.high %> Cm ,
+														Ancho: <%= ts.couples_type.width %> Cm ,
+														Largo: <%= ts.couples_type.long %> Cm
+														<b>Peso:</b> <%= ts.couples_type.weight %> Cm
+												</td>
+
+
+										</tr>
+								<% end %>
+						</table>
+
+				</div>
+		</div>
+
+
+		<hr>
+		<hr>
+		<div class="">
+
+				<div class="row">
+						<div class="col s12 m12">
+								<div class="card">
+										<div class="card-content">
+										<span class="card-title">
+												<blockquote>
+												<h4>Hoja de viajes</h4>
+										</blockquote>
+										</span>
+												<table class="">
+														<% @ts_details.each do |ts| %>
+																<tr>
+																		<th>ID:</th>
+																		<td><%= ts.id %></td>
+																		<th>Nombre:</th>
+																		<td><%= ts.travel_name %></td>
+																		<th>Estado:</th>
+																		<td><%= ts.state %></td>
+																</tr>
+																<tr>
+																		<th>Compañia:</th>
+																		<td>-</td>
+																		<th>Creada por:</th>
+																		<td><%= ts.created_from %></td>
+																		<th>Creada el:</th>
+																		<td><%= ts.created_at %></td>
+																</tr>
+														<% end %>
+												</table>
+										</div>
+								</div>
+						</div>
+						<div class="col s12 m6">
+								<div class="card">
+										<div class="card-content">
+												<span class="card-title">Conductor</span>
+												<table class="">
+														<% @ts_details.each do |ts| %>
+																<tr>
+																		<th>Nombre:</th>
+																		<td><%= ts.driver.name %></td>
+
+																		<th>RUT/DNI:</th>
+																		<td><%= ts.driver.rut %></td>
+																</tr>
+																<tr>
+																		<th>Compañia:</th>
+																		<td>-</td>
+																</tr>
+														<% end %>
+												</table>
+										</div>
+								</div>
+						</div>
+						<div class="col s12 m6">
+								<div class="card">
+										<div class="card-content">
+												<span class="card-title">Dispositivo</span>
+												<table class="">
+														<% @ts_details.each do |ts| %>
+																<tr>
+																		<th>ID:</th>
+																		<td><%= ts.device.id %></td>
+
+																		<th>Nombre:</th>
+																		<td><%= ts.device.name %></td>
+
+																		<th>Imei:</th>
+																		<td><%= ts.device.imei %></td>
+																</tr>
+																<tr>
+																		<th>Tipo</th>
+																		<td><%= ts.device.icon %></td>
+
+																		<th>Grupo:</th>
+																		<td><%= ts.device.group %></td>
+
+																		<th>Telefono:</th>
+																		<td><%= ts.device.phone %></td>
+																</tr>
+														<% end %>
+												</table>
+										</div>
+								</div>
+						</div>
+						<div class="col s12 m12">
+								<div class="card">
+										<div class="card-content">
+												<span class="card-title">Carga</span>
+												<table class="">
+														<% @ts_details.each do |ts| %>
+																<tr>
+																		<th>Propietario:</th>
+																		<td><%= ts.owner.owner_name %></td>
+
+																		<th>De:</th>
+																		<td colspan="3"><%= ts.owner.location.location_name %>
+																				- <%= ts.owner.location.location_address %></td>
+
+																</tr>
+																<tr>
+																		<th>Acoplado:</th>
+																		<td><%= ts.couples_type.couple_name %></td>
+
+																		<th>Medidas:</th>
+																		<td>
+																				Alto: <%= ts.couples_type.high %> Cm ,
+																				Ancho: <%= ts.couples_type.width %> Cm ,
+																				Largo: <%= ts.couples_type.long %> Cm
+																				<b>Peso:</b> <%= ts.couples_type.weight %> Cm
+																		</td>
+
+
+																</tr>
+														<% end %>
+												</table>
+										</div>
+								</div>
+						</div>
+						<div class="col s12">
+								<div class="card">
+										<div class="card-content">
+												<span class="card-title">Rutas</span>
+												<div class="row">
+														<div class="col s12">
+																<ul class="tabs">
+																		<li class="tab col s6"><a class="active" href="#sumary">Resumen</a></li>
+																		<li class="tab col s6"><a href="#directions">Indicaciones</a></li>
+
+																</ul>
+														</div>
+														<div id="sumary" class="col s12">
+																<table class="">
+																		<tr>
+																				<th></th>
+																				<th>Tipo</th>
+																				<th>Hora Llegada</th>
+																				<th>Hora Salida</th>
+																				<th>Ubicación</th>
+																				<th>Dirección</th>
+																				<th>Estado</th>
+																		</tr>
+																		<% @ts_details.each do |ts| %>
+
+																				<% ts.travel_locations.each do |tl| %>
+
+																						<tr>
+																								<td>
+																										<img src="/icons/<%= tl.step %>.svg"/>
+																								</td>
+																								<td>
+																										<% if tl.step == 'start' %>
+																												Inicio
+																										<% else %>
+																												<% if tl.step == 'end' %>
+																														Termino
+																												<% else %>
+																														Parada
+																												<% end %>
+																										<% end %>
+																								</td>
+
+																								<td><%= tl.start_time.strftime("%H:%M") %></td>
+																								<td><%= tl.end_time.strftime("%H:%M") %></td>
+																								<td><%= tl.locations[0].location_name %></td>
+																								<td><%= tl.locations[0].location_address %></td>
+																								<td><%= tl.state %></td>
+																						</tr>
+
+
+																				<% end %>
+
+
+																		<% end %>
+																</table>
+														</div>
+														<div id="directions" class="col s12">
+																<table class="striped">
+																		<tr>
+
+																				<th>Calle</th>
+																				<th>Despues de</th>
+																				<th>Indicación</th>
+																				<th>Indicación</th>
+
+																				<th>Distancia</th>
+																				<th>Duración</th>
+																		</tr>
+																		<% @ts_details.each do |ts| %>
+
+																				<% ts.routes.each do |r| %>
+																						<% if r.maneuver != nil %>
+																								<tr>
+																										<th></th>
+																								</tr>
+																								<tr>
+																										<th colspan="6">Ruta hacia: <%= r.route_name %></th>
+																								</tr>
+																								<% parsed = JSON.parse(r.maneuver) %>
+																								<% parsed.each do |ma| %>
+																										<tr>
+																												<td><%= ma['name'] %></td>
+																												<td><%= ma['maneuver']['bearing_before'] %> Mts</td>
+
+																												<td><%= ma['maneuver']['type'] %></td>
+																												<td><%= ma['maneuver']['modifier'] %></td>
+
+																												<td><%= ma['maneuver']['bearing_after'] %> Mts</td>
+
+																												<td><%= (ma['duration']).to_i %> segundos</td>
+																										</tr>
+																								<% end %>
+																						<% else %>
+																								No existe una ruta
+																						<% end %>
+
+																				<% end %>
+																		<% end %>
+																</table>
+														</div>
+
+												</div>
+
+
+										</div>
+								</div>
+						</div>
+
+						<div class="col s12">
+								<div class="card">
+										<div class="card-content">
+												<div id="preview_map" style="width: 100%;height: 500px;"></div>
+										</div>
+								</div>
+						</div>
+				</div>
+
+
+		</div>
+		<script>
+        window.ts = []
+		</script>
+		<% @ts_details.each do |ts| %>
+				<script>
+            window.ts = <%= raw(ts.to_json) %>;
+            window.ts.travel_locations = [];
+            window.ts.routes = [];
+            window.ts.maneuver = [];
+				</script>
+				<% ts.travel_locations.each do |tl| %>
+						<script>
+                window.ts.travel_locations.push(<%= raw(tl.to_json) %>);
+                window.ts.travel_locations[window.ts.travel_locations.length - 1].location =
+                <%= raw(tl.locations[0].to_json) %>
+						</script>
+				<% end %>
+
+				<% ts.routes.each do |tr| %>
+						<script>
+                window.ts.routes.push(<%= raw(tr.to_json) %>);
+						</script>
+				<% end %>
+				<% ts.routes.each do |tr| %>
+						<script>
+                window.ts.maneuver = JSON.parse(<%= raw(tr.maneuver.to_json) %>);
+						</script>
+				<% end %>
+		<% end if @ts_details != nil %>
+<% end %>
+
+
+

@@ -1,0 +1,19 @@
+<% if @device.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @device.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("#devices_table tbody tr[data-id='<%= @device.id %>']").replaceWith("<%= escape_javascript(render 'device_row_config', device: @device) %>")
+$("#map_table tbody tr[data-imei='<%= @device.imei %>']").replaceWith("<%= escape_javascript(render 'device_row_map', device: @device) %>")
+$("#path_devices option[value='<%= @device.imei %>']").replaceWith("<%= escape_javascript(render 'device_row_option', device: @device) %>")
+$("#speeds_devices option[value='<%= @device.imei %>']").replaceWith("<%= escape_javascript(render 'device_row_option', device: @device) %>")
+$("#stops_devices option[value='<%= @device.imei %>']").replaceWith("<%= escape_javascript(render 'device_row_option', device: @device) %>")
+$("#new_device_event_device_id option[value='<%= @device.id %>']").replaceWith("<%= escape_javascript(render 'device_row_option', device: @device) %>")
+$("#edit_device_event_device_id option[value='<%= @device.id %>']").replaceWith("<%= escape_javascript(render 'device_row_option', device: @device) %>")
+
+window.devices = window.devices.filter(function(device){
+    return device.imei !== "<%= @device.imei %>" 
+})
+window.devices.push(<%= raw(@device.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

@@ -1,0 +1,5 @@
+$("#geo_zones_table tbody tr[data-id='<%= @geo_zone.id %>']").remove()
+
+window.geo_zones = window.geo_zones.filter(function(geo_zone){
+    return geo_zone.id !== "<%= @geo_zone.id %>" 
+})

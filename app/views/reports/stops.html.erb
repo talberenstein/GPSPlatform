@@ -1,0 +1,51 @@
+<div class="row ">
+  <div class="col s12">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th class="">Unidad</th>
+          <th class="">Conductor</th>
+          <th class="">Fecha Desde</th>
+          <th class="">Fecha Hasta</th>
+          <th class="">Lugar</th>
+          <th class="">Duración en Tiempo</th>
+          <th class="">Graficar</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @stops.each do |imei, s| %>
+          <% s[:stops].each do |stop|%>
+          <tr>
+            <td class="">
+              <%= Device.find_by(imei: imei).name %>
+            </td>
+            <td class="">
+              <%= Device.find_by(imei: imei).driver.to_s %>
+            </td>
+            <td class="">
+              <%= stop[:start_of_stop].gps_date.strftime("%d/%m/%Y %H:%M:%S") %>
+            </td>
+            <td class="">
+              <%= stop[:end_of_stop].gps_date.strftime("%d/%m/%Y %H:%M:%S") %>
+            </td>
+            <td class="">
+              <%= truncate Geocoder.address("#{stop[:start_of_stop].geom.coordinates[1]}, #{stop[:start_of_stop].geom.coordinates[0]}") %>
+            </td>
+            <td class="">
+              <% difference = TimeDifference.between(stop[:end_of_stop].gps_date, stop[:start_of_stop].gps_date).in_general %>
+              <%= "#{difference[:hours]} horas, " if difference[:hours] > 0 %>
+              <%= "#{difference[:minutes]} minutos, " if difference[:minutes] > 0 %>
+              <%= "#{difference[:seconds]} segundos" if difference[:seconds] > 0 %>
+            </td>
+            <td class="">
+              <%= link_to reports_stops_graph_path(stop: stop[:start_of_stop].geom.coordinates.reverse), target: :_blank, class: 'waves-effect waves-light btn blue' do %>
+                <i class="material-icons">visibility</i>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

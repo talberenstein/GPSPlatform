@@ -1,0 +1,21 @@
+<tr data-id="<%= user.id %>">
+  <td class="">
+    <%= user.email %>
+  </td>
+  <td class="">
+    <%= user.role %>
+  </td>
+  <td class="">
+    <%= user.company.try(:name) %>
+  </td>
+  <td class="">
+    <a href="#edit_user_modal" class="edit_user_btn"><%= image_tag 'edit.svg' %></a>
+  </td>
+  <td class="">
+    <%= link_to user, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+    <%= image_tag 'delete.svg' %>
+    <% end %>
+  </td>
+  <td class="">
+  </td>
+</tr>

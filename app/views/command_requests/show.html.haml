@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @command_request.user
+%p
+  %b Request time:
+  = @command_request.request_time
+%p
+  %b Command text:
+  = @command_request.command_text
+%p
+  %b Status:
+  = @command_request.status
+%p
+  %b Result time:
+  = @command_request.result_time
+
+= link_to 'Edit', edit_command_request_path(@command_request)
+\|
+= link_to 'Back', command_requests_path

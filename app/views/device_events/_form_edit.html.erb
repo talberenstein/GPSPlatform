@@ -1,0 +1,43 @@
+<div id="edit_device_event_modal" class="modal">
+  <form method="PUT" action="<%= device_events_path %>" id="edit_device_event_form" data-remote="true">
+        <h4 class="">Editar Evento</h4>
+    <div class="modal-content">
+            <%= render 'shared/error_messages' %>
+
+
+      <div class="row">
+        <label>Unidad</label>
+        <div class="input-fiel col s12">
+          <select name="device_event[device_id]" id="edit_device_event_device_id" class="selectize" required>
+            <% (current_user.global_admin? ? Device : current_user.company.devices).all.each do |d| %>
+            <option value="<%= d.id %>"><%= d.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <label>Evento</label>
+        <div class="input-fiel col s12">
+          <select name="device_event[event_id]" id="edit_device_event_event_id" class="selectize" required>
+            <% Event.all.each do |e| %>
+            <option value="<%= e.id %>"><%= e.name %></option>
+            <% end %>>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-fiel col s12">
+          <input type="hidden" name="device_event[is_alert]" value="0">
+          <input type="checkbox" id="edit_device_event_is_alert" class="" name="device_event[is_alert]">
+          <label for="edit_device_event_is_alert">Genera Alerta?</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action waves-effect waves-green btn-flat">Guardar</button>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">
+        Cerrar
+      </a>
+    </div>
+  </form>
+</div>

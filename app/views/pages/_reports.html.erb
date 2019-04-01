@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col s12">
+    <blockquote class="hide-on-large-only">
+      <i class="material-icons left">content_paste</i>Reportes</a>
+    </blockquote>
+  </div>
+  <div class="col s12">
+    <table class="bordered">
+      <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Ver</th>
+        <th>Exportar a</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+
+        <td class="">
+          Velocidades
+        </td>
+        <td class="">
+          <a href="#speeds_report_modal"><span><%= image_tag 'view.svg' %></span></a>
+        </td>
+        <td class="">
+          <a href="#speeds_report_modal_excel"><span><%= image_tag 'xls.svg' %></span></a>
+        </td>
+      </tr>
+      <tr>
+
+        <td class="">
+          Detenciones
+        </td>
+        <td class="">
+          <a href="#stops_report_modal"><span><%= image_tag 'view.svg' %></span></a>
+        </td>
+        <td class="">
+          <a href="#stops_report_modal_excel"><span><%= image_tag 'xls.svg' %></span></a>
+        </td>
+      </tr>
+      <tr>
+
+        <td class="">
+          Recorrido
+        </td>
+        <td class="">
+          <a href="#path_report_modal" id="path_report_btn"><span><%= image_tag 'view.svg' %></span></a>
+        </td>
+        <td class=""></td>
+      </tr>
+      <tr>
+
+        <td class="">
+          Geo Zonas
+        </td>
+        <td class="">
+          <a href="#geo_zones_report_modal"><span><%= image_tag 'view.svg' %></span></a>
+        </td>
+        <td class="">
+          <a href="#geo_zones_report_modal_excel"><span><%= image_tag 'xls.svg' %></span></a>
+        </td>
+      </tr>
+      <tr>
+        <td class="">
+          Actividades Diarias
+        </td>
+        <td class="">
+          <a href="#daily_activities_report_modal"><span><%= image_tag 'view.svg' %></span></a>
+        </td>
+        <td class="">
+          <a href="#daily_activities_report_modal_excel"><span><%= image_tag 'xls.svg' %></span></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<a href="/informations/info" target="_blank"> new report</a>
+<%= render 'reports/speeds' %>
+<%= render 'reports/stops' %>
+<%= render 'reports/path' %>
+<%= render 'reports/daily_activities' %>
+<%= render 'reports/geo_zones_histories' %>

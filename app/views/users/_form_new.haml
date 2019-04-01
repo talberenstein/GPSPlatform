@@ -1,0 +1,22 @@
+#new_user_modal.modal
+  = render 'shared/error_messages'
+  %h4.left.blue-grey-text.text-lighten-2 Nuevo Usuario
+  = form_for User.create, {format: :js, remote: true} do |f|
+    .input-field.col.s12
+      = f.text_field :email, placeholder: 'Correo Electrónico'
+    .input-field.col.s6
+      = f.password_field :password, placeholder: 'Contraseña'
+    .input-field.col.s6
+      = f.password_field :password_confirmation, placeholder: 'Confirme Contraseña'
+    - if current_user.global_admin?
+      .input-field.col.s4
+        = f.select :role, options_for_select([["Administrador Global", "global_admin"], ["Administrador de Compañía"  , "company_admin"], ["Usuario de Compañía", "company_viewer"]])
+      .input-field.col.s4
+        = f.collection_select :company_id, Company.order(:name), :id, :name, prompt: 'Seleccione Compañia',        onchange: "change_group(this)"
+      .input-field.col.s4
+        = select_tag "user[group_ids][]", options_from_collection_for_select(@groups, "id", "name"), prompt: " Seleccion Grupo", multiple: true, id: 'user_groups_id'
+    .input-field.col.s6
+      = check_box_tag("user[send_command]", "1", false)
+      = label_tag("user[send_command]", "Envío de Comandos")
+    .modal-footer.col.s6
+      = f.submit "Creación Usuario", class: "waves-effect waves-red btn-flat right"

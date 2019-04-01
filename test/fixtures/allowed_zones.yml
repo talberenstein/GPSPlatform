@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  geo_type: MyString
+  geo: 
+  company_id: 1
+  created_from: 1
+  modified_from: 1
+
+two:
+  geo_type: MyString
+  geo: 
+  company_id: 1
+  created_from: 1
+  modified_from: 1

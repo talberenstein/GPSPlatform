@@ -1,0 +1,11 @@
+$("#companies_table tbody tr[data-id='<%= @company.id %>']").remove()
+$("#new_device_company_id option[value='<%= @company.id %>']").remove()
+$("#edit_device_company_id option[value='<%= @company.id %>']").remove()
+$("#new_driver_company_id option[value='<%= @company.id %>']").remove()
+$("#edit_driver_company_id option[value='<%= @company.id %>']").remove()
+$("#new_user_company_id option[value='<%= @company.id %>']").remove()
+$("#edit_user_company_id option[value='<%= @company.id %>']").remove()
+
+window.companies = window.companies.filter(function(company){
+    return company.id !== "<%= @company.id %>" 
+})

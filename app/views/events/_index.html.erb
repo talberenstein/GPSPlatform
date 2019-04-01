@@ -1,0 +1,33 @@
+<div class="current-menu-config" id="config-menu-events" hidden>
+  <div class="row">
+    <div class="col s6">
+      <blockquote>Eventos</blockquote>
+    </div>
+    <div class="col s6">
+      <button class="tooltipped btn right" data-tooltip="Agregar Evento" data-target="new_event_modal">
+        <i class="material-icons">add</i>
+      </button>
+    </div>
+  </div>
+
+
+  <table class="bordered striped highlight" id="events_table">
+    <thead>
+    <tr>
+      <th class="">Nombre</th>
+      <th class="">Syrus</th>
+      <th class="">Tk103</th>
+      <th class="">Amos3005</th>
+      <th class=""></th>
+      <th class=""></th>
+    </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'events/event_row_config', collection: @events, as: :event, cached: true %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= render 'events/form_new' %>
+<%= render 'events/form_edit' %>

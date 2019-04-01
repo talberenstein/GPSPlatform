@@ -1,0 +1,2 @@
+class TravelGeozoneController < ApplicationController
+end

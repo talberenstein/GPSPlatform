@@ -1,0 +1,10 @@
+#new_device_event_modal.modal
+  = render 'shared/error_messages'
+  %h4.left.blue-grey-text.text-lighten-2 Agregar Alertas a Dispositivo
+  = form_for DeviceEvent.create, {format: :js, remote: true} do |f|
+    .input-field.col.s12
+      = f.collection_select :device_id, Device.order(:name), :id, :name, prompt: 'Seleccione Dispositivo'
+    .input-field.col.s12
+      = f.collection_select :event_id, Event.order(:name), :id, :name, {prompt: 'Seleccione Eventos'}, {multiple: true}
+    .modal-footer.col.s12
+      = f.submit "Creación", class: "waves-effect waves-red btn-flat right"

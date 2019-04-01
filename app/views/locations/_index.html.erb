@@ -1,0 +1,28 @@
+<div class="current-menu-config" id="config-menu-locations" hidden>
+
+  <blockquote>Ubicaciones</blockquote>
+
+  <table class="bordered" id="locations_table">
+    <thead>
+    <tr>
+      <th class="">Nombre</th>
+      <th class="">Dirección</th>
+
+      <th class=""></th>
+      <th class=""></th>
+      <th>
+        <button class="tooltipped" data-tooltip="Agregar ubicación" data-target="new_location_modal">
+          <%= image_tag 'new.svg', width: 30 %>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'locations/location_row_config', collection: @locations, as: :location, cached: true %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= render 'locations/form_new' %>
+<%= render 'locations/form_edit' %>

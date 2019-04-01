@@ -1,0 +1,7 @@
+$("#groups_table tbody tr[data-id='<%= @group.id %>']").remove()
+$("#new_device_group_id option[value='<%= @group.id %>']").remove()
+$("#edit_device_group_id option[value='<%= @group.id %>']").remove()
+
+window.groups = window.groups.filter(function(group){
+    return group.id !== "<%= @group.id %>" 
+})

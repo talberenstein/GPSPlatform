@@ -1,0 +1,39 @@
+<div id="edit_event_modal" class="modal">
+  <form method="PUT" action="<%= events_path %>" id="edit_event_form" data-remote="true">
+    <div class="modal-content">
+        <h4>Editar Evento</h4>
+
+    <%= render 'shared/error_messages' %>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_event_name" name="event[name]" required />
+          <label class="" for="edit_event_name">Nombre</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_event_syrus" name="event[syrus]" />
+          <label class="" for="edit_event_syrus">Syrus</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_event_tk103" name="event[tk103]" />
+          <label class="" for="edit_event_tk103">Tk103</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="" type="text" id="edit_event_amos3005" name="event[amos3005]" />
+          <label class="" for="edit_event_amos3005">Amos3005</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action waves-effect waves-green btn-flat">Guardar</button>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">
+        Cerrar
+      </a>
+    </div>
+  </form>
+</div>

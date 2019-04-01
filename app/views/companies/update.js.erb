@@ -1,0 +1,19 @@
+<% if @company.errors.any? %>
+$('.modal.open .errors .col').html("<ul><%= raw @company.errors.full_messages.map{|e| '<li>'+e+'</li>'}.join %></ul>")
+<% else %>
+$("#companies_table tbody tr[data-id='<%= @company.id %>']").replaceWith("<%= escape_javascript(render 'company_row_config', company: @company) %>")
+$("#new_device_company_id option[value='<%= @company.id %>']").replaceWith("<%= escape_javascript(render 'company_row_option', company: @company) %>")
+$("#edit_device_company_id option[value='<%= @company.id %>']").replaceWith("<%= escape_javascript(render 'company_row_option', company: @company) %>")
+$("#new_driver_company_id option[value='<%= @company.id %>']").replaceWith("<%= escape_javascript(render 'company_row_option', company: @company) %>")
+$("#edit_driver_company_id option[value='<%= @company.id %>']").replaceWith("<%= escape_javascript(render 'company_row_option', company: @company) %>")
+$("#new_user_company_id option[value='<%= @company.id %>']").replaceWith("<%= escape_javascript(render 'company_row_option', company: @company) %>")
+$("#edit_user_company_id option[value='<%= @company.id %>']").replaceWith("<%= escape_javascript(render 'company_row_option', company: @company) %>")
+
+window.companies = window.companies.filter(function(company){
+    return company.id !== "<%= @company.id %>" 
+})
+window.companies.push(<%= raw(@company.to_json) %>)
+$('.modal.open form')[0].reset()
+$('.modal.open').modal('close')
+<% end %>
+

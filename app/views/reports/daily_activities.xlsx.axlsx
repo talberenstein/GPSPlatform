@@ -1,0 +1,18 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "General") do |sheet|
+  sheet.add_row ["Unidad","Fecha","Km Recorridos","Viajes","Horas manejo","Horas detenido","Horas ralenti"]
+  
+  @da.each do |imei, da|
+        da[:activities].each do |activity|
+            sheet.add_row [
+            Device.find_by(imei: imei).name,
+            activity[:date].strftime("%d/%m/%Y"),
+            activity[:distance],
+            activity[:trips],
+            activity[:drive_hours],
+            activity[:stopoff_hours],
+            activity[:stopon_hours]
+            ]    
+        end
+  end
+end

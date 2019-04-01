@@ -1,0 +1,132 @@
+// Place all the styles related to the travel_sheets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.modal_travel_sheet{
+  top: 1% !important;
+  height: 96% !important;
+  width: 95% !important;
+}
+
+.switch_travel_sheet{
+  left: 50px !important;
+  top: 25px !important;
+}
+.switch_label_travel_sheet{
+  left: 40px !important;
+  top: 0px !important;
+}
+
+.flip_icon{
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.fix_border_bottom{
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.collection-item{
+  min-height: 60px !important;
+}
+
+.inputHour{
+  margin: 0 0 0px 0 !important;
+}
+
+.collection-route{
+  max-height: 450px;
+  overflow: auto;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  font-size: 12px !important;
+  line-height: 15px !important;
+  padding: 5px 9px !important;
+}
+.dropdown-content li {
+
+  min-height: 30px !important;
+
+}
+
+ul.stepper.horizontal::before{
+  min-height: 45px !important;
+}
+ul.stepper.horizontal .step {
+  height: 45px !important;
+}
+ul.stepper.horizontal .step-content {
+  top: 45px !important;
+  padding: 27px 0px 0px !important;
+  height: 100% !important;
+}
+
+blockquote{
+  margin: 0px 0 !important;
+}
+
+
+
+.td_color_blue{
+  background-color: #1a90af !important;
+  color: white !important;
+  td{
+    padding: 5px !important;
+    margin: 20px !important;
+    border-bottom: 0px !important;
+    border-radius: 0px !important;
+  }
+}
+
+
+.td_sub_color_blue{
+  background-color: #b6dfe5 !important;
+  td{
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 20px !important;
+    border-bottom: 0px !important;
+    border-radius: 0px !important;
+    border-bottom: 0px !important;
+  }
+}
+
+.center_col{
+  text-align: center !important;
+}
+
+.icon_table{
+  width: 30px !important;
+}
+
+.btn{
+  background-color: #1a90af !important;
+}
+.btn:hover{
+  background-color: #1ab5de !important;
+}
+
+td.details-control {
+  background: url('/icons/plus.svg') no-repeat center center;
+  cursor: pointer;
+  background-size: 20px;
+  min-width: 30px !important;
+}
+tr.shown td.details-control {
+  background: url('/icons/minus.svg') no-repeat center center;
+  cursor: pointer;
+  background-size: 20px;
+  min-width: 30px !important;
+}
+
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #1a90af;
+}
+.tabs .indicator {
+  background-color: #1a90af;
+}

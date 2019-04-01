@@ -1,0 +1,238 @@
+#devices_list{
+    height:30%;
+}
+
+#mapid {
+  height: 500px;
+
+}
+#device_info_map {
+    border-top: 5px solid #68cee1;
+    background-color: white;
+    //position: absolute;
+    //width: 66.65%;
+    bottom: 0px;
+    z-index: 400;
+    right: 0px;
+    padding: 10px;
+    ul{
+        margin: 10px;
+        li{
+            list-style-type: square;
+        }
+    }
+    *{
+        font-size: 12px;
+    }
+    img{
+        padding: 20px;
+    }
+}
+#gprs_status_img{
+    img{
+        width: 50px;
+        margin: 10px;
+        padding: 0px;
+    }
+}
+#gps_status_img{
+    img{
+        width: 50px;
+        margin: 10px;
+        padding: 0px;
+    }
+}
+.device-icon{
+    width: 25px;
+    margin-right: 20px;
+    float: left;
+}
+#map_table{
+    td{
+        a{
+            float: left;
+        }
+        padding-left: 10px !important;
+    }
+}
+/*
+[type="checkbox"] + label {
+    padding-left: 10px !important;
+}*/
+
+
+
+
+
+
+
+
+
+
+.page-wrap {
+    float: right;
+    width: 100%;
+    transition: width 0.3s ease;
+}
+
+.main-nav {
+    position: fixed;
+    top: 60px;
+    width: 0;
+    height: 100%;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+    &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 34px;
+    }
+}
+
+
+.leaflet-control-zoom{
+    top: 70px !important;
+}
+
+.close-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    margin-top: 10px;
+
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.open-menu {
+    position: absolute;
+    z-index: 1000;
+    margin-top: 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+#main-nav:target {
+    width: 33%;
+}
+#main-nav:target + .page-wrap {
+    width: 67%;
+    .open-menu {
+        display: none;
+    }
+    .close-menu {
+        display: block;
+    }
+
+}
+
+.device-show{
+    display: table-caption;
+    width: 125px;
+}
+
+.jstree-proton .jstree-anchor {
+    height: 25px !important;
+}
+
+#jstree{
+    max-width: 410px;
+}
+
+.info_top_bar_map{
+    margin: 0.0rem 0 0rem 0 !important;
+    background-color: #dadada !important;
+    padding: 0px 0px !important;
+}
+
+
+
+
+//Menu collapsable down
+
+// Burger menu button
+$burger--thickness: 4px;
+.burger {
+  $width: 28px;
+
+  display: inline-block;
+  border: 0;
+  background: none;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+
+  border-bottom: $burger--thickness solid currentColor;
+  width: $width;
+
+  transition: border-bottom 1s ease-in-out;
+  -webkit-transition: border-bottom 1s ease-in-out;
+
+  // Fix for extra space in Firefox
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    border-bottom: $burger--thickness solid currentColor;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    border-bottom: $burger--thickness solid currentColor;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  }
+}
+
+.burger-check {
+  display: none;
+}
+
+.burger-check:checked ~ .burger {
+  border-bottom: $burger--thickness solid transparent;
+  transition: border-bottom 0.8s ease-in-out;
+  -webkit-transition: border-bottom 0.8s ease-in-out;
+
+  &:before {
+    transform: rotate(-405deg) translateY(1px) translateX(-3px);
+    -webkit-transform: rotate(-405deg) translateY(1px) translateX(-3px);
+    transition: transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  }
+
+  &:after {
+    transform: rotate(405deg) translateY(-4px) translateX(-5px);
+    -webkit-transform: rotate(405deg) translateY(-4px) translateX(-5px);
+    transition: transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  }
+}
+
+// * * * Navigation * * *
+$navigation__transition: max-height 0.5s ease-in-out;
+
+.device_info_map {
+  overflow: hidden;
+  max-height: 0;
+
+  transition: $navigation__transition;
+}
+
+.burger-check:checked ~ .device_info_map {
+  max-height: 500px;
+
+  transition: $navigation__transition;
+}

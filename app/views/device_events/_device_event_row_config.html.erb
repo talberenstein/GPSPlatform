@@ -1,0 +1,21 @@
+<tr data-id="<%= device_event.id %>">
+        <td class="">
+            <%= device_event.event.name %>
+        </td>
+        <td class="">
+            <%= device_event.device.name %>
+        </td>
+        <td class="">
+            <%= device_event.is_alert ? 'Si' : 'No' %>
+        </td>
+        <td class="">
+            <a href="#edit_device_event_modal" class="edit_device_event_btn"><%= image_tag 'edit.svg' %></a>
+        </td>
+        <td class="">
+            <%= link_to device_event, method: :delete, remote: true, data: { confirm: 'Esta seguro?' }, class: '' do %>
+                <%= image_tag 'delete.svg' %>
+            <% end %>
+        </td>
+        <td class="">
+        </td>
+    </tr>

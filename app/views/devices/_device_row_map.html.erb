@@ -1,0 +1,42 @@
+<tr class="map_device" data-imei="<%= device.imei %>" data-id="device_<%= device.id %>" data-parent="group_<%= device.group_id %>">
+  <td class="">
+      <input type="checkbox" id="show_checkbox_<%= device.id %>" class="show_checkbox" name="show" value="<%= device.imei %>">
+      <label for="show_checkbox_<%= device.id %>"></label>
+  </td>
+  <td class="">
+    <%= image_tag "#{device.icon}.svg", width: 15 %><a href="#" data-imei="<%= device.imei %>" class="device-show"><%= device.name %></a>
+  </td>
+  <td class="">
+      <input type="checkbox" id="track_checkbox_<%= device.id %>" class="track_checkbox" name="track" value="<%= device.imei %>">
+      <label for="track_checkbox_<%= device.id %>"></label>
+  </td>
+  <td class="">
+    <a href="#new_device_command_modal">
+      <%= image_tag 'ventana-consultor-negado.svg'%>
+    </a>
+  </td>
+  <td class=" engine_status">
+    <% if device.last_position_frame %>
+    <% if device.last_position_frame.driving? %>
+    <%= image_tag 'seguimiento-ruta-motorenmovimiento.svg' %>
+    <% elsif device.last_position_frame.stopped_with_ignition? %>
+    <%= image_tag 'seguimiento-ruta-detenidomotorencendido.svg' %>
+    <% elsif device.last_position_frame.stopped_without_ignition? %>
+    <%= image_tag 'seguimiento-ruta-detenidomotorapagado.svg' %>
+    <% end %>
+    <% else %>
+    <%= image_tag 'seguimiento-ruta-detenidomotorapagado.svg' %>
+    <% end %>
+  </td>
+  <td class=" gps_valid">
+    <%= device.last_position_frame && device.last_position_frame.gps_valid ? image_tag('gps-posicionamiento-ok.svg') : image_tag('gps-posicionamiento-malo.svg') %>
+  </td>
+  <td class=" gprs_online">
+    <%= image_tag('sign-equipo-malo.svg')%>
+  </td>
+  <td class="">
+    <%= link_to '#', class: 'path_report_map_btn', data: {imei: device.imei} do %>
+    <%= image_tag 'reporte-recorrido-ok.svg'%>
+    <% end %>
+  </td>
+</tr>
